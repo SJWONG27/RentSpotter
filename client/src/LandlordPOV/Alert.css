@@ -1,0 +1,68 @@
+.my-confirm-button-class {
+    background-color: #FF8C22; 
+    border-color:#FF8C22 ;
+    color: white; 
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border-radius: 8px; 
+    font-weight: 600;
+    font-size: 28px;
+    font-family: 'Poppins'; 
+    margin-top: 0.8em;
+    margin-bottom: 1.5em;
+    width: 7em;
+    height: 3em; 
+}
+
+.my-custom-image-class {
+   padding-top: 1.5em;
+}
+
+.my-title-class {
+    margin-top: -0.95em;
+    color: #FF5C00;
+    font-weight: bold;
+    font-family: "Poppins";
+    font-size: 28px;
+    padding-bottom: 0.25em;
+}  
+
+.my-title-class-login {
+    margin-top: -0.95em;
+    color: #FF5C00;
+    font-weight: bold;
+    font-family: "Poppins";
+    font-size: 28px;
+}  
+
+.my-title-class_login{
+    margin-top: -0.2em;
+    color: #FF5C00;
+    font-weight: bold;
+    font-family: "Poppins";
+    font-size: 28px;
+    padding-bottom: 0.25em;
+}
+
+.my-loginText-class{
+    line-height: 3em;
+}
+
+
+.my-confirm-button-class-success {
+    background-color: #FF8C22; 
+    border-color:#FF8C22 ;
+    color: white; 
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border-radius: 8px; 
+    font-weight: 600;
+    font-size: 20px;
+    font-family: 'Poppins'; 
+    margin-top: 0.5em;
+    margin-bottom: 1.2em;
+    width: 5.6em;
+    height: 2.8em; 
+}

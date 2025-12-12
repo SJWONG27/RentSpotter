@@ -1,0 +1,174 @@
+* {
+  font-family: "Poppins";
+}
+
+#PropertyImage .container {
+  position: relative; /* Required for absolute positioning */
+  padding: 0;
+  margin: 0;
+}
+
+.imageContainer {
+  position: relative; /* Required for absolute positioning */
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  transition: transform 2s ase;
+}
+
+.propertyImage {
+  width: 57.5%;
+  height: auto;
+}
+
+.buttonContainer {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: -15%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  padding-inline: 0.5em;
+}
+
+.imgPageIconContainer {
+  position: absolute;
+  top: 94.5%;
+  right: -14.5%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  transform: translateY(-50%);
+  column-gap: 0.45em;
+  padding-inline: 0.35em;
+  padding-block: 0.35em;
+  background-color: rgba(0, 0, 0, 0.64);
+}
+
+.imgPageText {
+  color: white;
+  font-size: 1.35em;
+  font-weight: 300;
+}
+
+.imgPageIcon {
+  color: #ffffff;
+  width: auto;
+  height: 1.2em;
+}
+
+.previousButton,
+.nextButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.previousButton:hover svg ellipse,
+.nextButton:hover svg ellipse {
+  fill: white;
+  fill-opacity: 0.9;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+#propertyImage2 {
+  padding-left: 1.3em;
+}
+
+#PropertyDetails .container,
+#PropertyDetails {
+  margin-top: 2em;
+  width: 100%;
+}
+
+.applyButton {
+  display: flex;
+  justify-content: center;
+}
+
+.applyNowButton {
+  background-color: #ff8c22;
+  font-weight: bold;
+  color: #fff6ea;
+  border: 2px;
+  border-radius: 6px;
+  padding: 0.65em 4.5em;
+  margin-top: 3.125em;
+  cursor: pointer;
+  margin-bottom: 5em;
+  font-size: larger;
+}
+
+.applyNowButton:hover {
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.8);
+  opacity: 0.7;
+}
+
+#Comment {
+  width: 100%;
+  background-color: #ffff;
+  overflow-x: hidden;
+}
+
+.commentTitle {
+  color: #ff5c00;
+  padding-top: 3em;
+  margin-left: 3.3em;
+  font-weight: 560;
+  font-size: xx-large;
+}
+
+.comment-avg {
+  margin-left: 5.8em;
+  margin-top: 0.5em;
+  font-size: large;
+  margin-bottom: 2em;
+}
+
+.tenant-comment-grid,
+.comments {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.tenant-comment-grid {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 2.563rem;
+}
+
+.comments {
+  width: 88.694rem;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0 1.25rem 1.875rem;
+  font-size: 1rem;
+  margin-left: 0.05em;
+  margin-bottom: 5em;
+  margin-top: 1.2em;
+}
+
+.tenantCommentPromptTitle {
+    font-size: 25px; 
+    color:#767676;
+    margin-left: 3.5em; 
+    font-weight: 500; 
+    padding-bottom: 5em; 
+    margin-top: -0.6em;
+}
+
+#Comment .tenantRatingStarsGroup {
+    margin-right: 1.3em;
+    margin-left: -0.8em;
+}
+
+#Comment .tenant-rating-star {
+    margin-right: -2.1em;
+}
+
+.tenantCommentBoxContainer {
+    margin-left: 3.8em;
+}

@@ -1,0 +1,52 @@
+.containerUploadPhoto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin-top: -7em;
+}
+
+.rectangleUploadPhoto {
+  width: 600px;
+  height: 400px;
+  border: 2px solid grey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.image {
+  width: 200px;
+  height: 200px;
+  margin-top: 1.2em;
+  cursor: pointer;
+}
+
+.boldText {
+  font-weight: bold;
+  font-size: 130%;
+  margin-top: 2em;
+}
+
+.greyText {
+  color: grey;
+  text-decoration: underline;
+  margin-top: 1em;
+  margin-bottom: 2em;
+}
+
+.additionalInfo {
+  margin-top: -7em;
+  margin-left: 27.5em;
+}
+
+.additionalInfo p {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.additionalInfo ul {
+  list-style-type: square;
+  padding-left: 4px;
+}

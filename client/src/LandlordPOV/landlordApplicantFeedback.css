@@ -1,0 +1,121 @@
+applicantInfoSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.applicantInfoContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.applicantInfoContainer .applicantContactSection {
+  display: flex;
+  padding-left: 3.4em;
+  flex-direction: column;
+}
+
+.applicantInfoContainer .contactTop_Section {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 1.5em;
+  padding-bottom: 0.2em;
+}
+
+.applicantInfoContainer .contactText {
+  padding-top: 0.8em;
+}
+
+.applicantInfoContainer .contactText {
+  font-size: large;
+}
+
+.applicantInfoContainer .contactLink a{
+  color: #ff8c22;
+  text-decoration: underline;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.applicantInfoContainer .contactLink:hover a{
+  color: rgb(252, 174, 72);
+}
+
+.applicantInfoContainer .contactBottom_Section {
+  padding-top: 0.5em;
+}
+
+.applicantInfoContainer .landlordAction_Section {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  padding-right: 3.4em;
+}
+
+#rejectApplicant,
+#sendLeaseAgreement {
+  font-weight: 600;
+  color: #fff6ea;
+  border: 1em;
+  border-radius: 0.5em;
+  padding: 0.8em 3em;
+  cursor: pointer;
+  margin-bottom: 2em;
+  font-size: 18px;
+  width: fit-content;
+  align-self: end;
+}
+
+#rejectApplicant:hover,
+#sendLeaseAgreement:hover {
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.8);
+  opacity: 0.7;
+}
+
+#rejectApplicant {
+  background-color: #b90000;
+  padding-inline: 5.5em;
+}
+
+#sendLeaseAgreement {
+  background-color: #ff8c22;
+}
+
+.applicantReviewDetails .applicantCommentTitle {
+  font-size: 28px;
+  font-weight: 400;
+  color: black;
+  padding: 1.8em 0em 0.38em 2em;
+}
+
+.applicantReviewDetails #lineWrapper {
+  padding-inline: 2.7em;
+  padding-bottom: 1em;
+}
+
+.applicantCommentContainer {
+  padding: 1.8em 2.8em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  row-gap: 2em;
+}
+
+.Loading_Text{
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 30px;
+  color: #8a8a8a;
+  margin-left: 1em; 
+  margin-top: -0.6em;
+  padding-bottom: 5em; 
+}
+
+
+@media screen and (max-width: 1000px) {
+  .applicantCommentContainer {
+    flex-direction: column; /* Stack comment cards vertically when screen width is less than 500px */
+  }
+}

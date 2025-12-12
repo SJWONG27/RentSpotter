@@ -1,0 +1,121 @@
+.pageMainContainer {
+    font-family: Poppins;
+    padding: 1em;
+    padding-top: 0.6em;
+}
+
+.pageMainTitle {
+    font-weight: 600; 
+    font-size: 35px; ; 
+    color: hwb(22 0% 0%); 
+    padding: 1em 0em 1.5em 1.5em; 
+}
+
+.applicationSubTitle,
+.pageMainSubTitle{
+    font-size: 31px; 
+    color: black; 
+    font-weight: 600; 
+    margin-left: 1.8em; 
+    padding-bottom: 0.8em; 
+    padding-top: 0.8em; 
+}
+
+.pageSubTitle{
+    font-size: 24px; 
+    color: black; 
+    font-weight: 600; 
+    margin-left: 2.3em; 
+    padding-bottom: 0.8em; 
+    padding-top: 0.8em; 
+}
+
+.container {
+    margin-top: 20px; /* Add margin distance from the top */
+  }
+  
+  .image-row {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 3.5em;
+  }
+  
+  .image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 0.2em;
+    margin-right: 3em; /* Add margin between each image container */
+    position: relative; /* Add positioning for stacking */
+  }
+  
+  .circle-image {
+    width: 72px; /* Set circle image width */
+    height: 72px; /* Set circle image height */
+  }
+  
+  .main-image {
+    width: 8em; /* Set main image width */
+    height: 6em; /* Set main image height */
+    position: absolute; /* Position the main image */
+    top: -0.75em; /* Adjust the top position for stacking */
+  }
+  
+  .label {
+    font-size: 14px; /* Set label font size */
+    padding-top: 0.8em;
+  }
+
+  .displayErrorMessage {
+    color: red;
+    font-size: 12px;
+    position: absolute; /* Change to absolute */
+    top: calc(100% + 5px); /* Position the error message right below the container */
+    left: 0; /* Align the error message to the left of the container */
+    width: 100%; /* Ensure the error message spans the full width of the container */
+    padding-left: 50px;
+}
+
+  .centreButton {
+    background-color: #FF8C22;
+    font-weight: bold;
+    color: #F9F9F9;
+    border: 2px;
+    border-radius: 6px;
+    padding: 0.65em 1.6em;
+    margin-left: -3.6em;
+    margin-top: 1.2em;
+    cursor: pointer;
+  }
+
+  .centreButton:hover {
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.8);
+    opacity: 0.7;
+  }
+
+  .applyButton {
+    display: flex;
+    justify-content: center;
+}
+
+.applyNowButton {
+    background-color: #FF8C22;
+    font-weight: bold;
+    color: #FFF6EA;
+    border: 2px;
+    border-radius: 6px;
+    padding: 0.65em 4.5em;
+    margin-top: 3.125em;
+    cursor: pointer;
+    margin-bottom: 5em;
+    font-size: larger;
+}
+
+.applyNowButton:hover {
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.8);
+    opacity: 0.7;
+}
+
+  
+  

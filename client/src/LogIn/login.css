@@ -1,0 +1,142 @@
+#login{
+    padding: 0px 3.5em;
+    background-color: #FBF4E8;
+    width: 100%; 
+    height: 100vh; 
+    display: flex;
+    box-sizing: border-box; 
+    overflow: hidden;
+}
+
+.content-section {
+    margin-top: 7.5em;
+    margin-left: -1.4em;
+    background-color: #FBF4E8;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1; 
+}
+
+.left-section, .right-section {
+    flex: 1;
+    max-width: 40%; 
+    margin-right: 5em;
+}
+
+.left-section {
+    width: 20%; 
+}
+  
+.right-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-section .login-form {
+    margin-top: -8em; 
+}
+
+
+.login-form {
+    border: 2px solid black;
+    background-color: #FFFFFF;
+    border-radius: 25px;
+    width: 100%;
+    padding-left: 5.6em;
+    padding-right: 5.6em;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    margin-bottom: -25%;
+    text-align: center;
+    position: relative;
+}
+
+.form {
+    display: flex;  
+}
+
+
+#login .logIn_wlcTxt {
+    font-weight: bold; 
+    font-size: 35px; ; 
+    color: #0E3869; 
+    line-height: 1.4;
+    text-align: center;
+    display: flex;
+    padding-top: 0.2em;
+    margin-left: 3em;
+  }
+
+#login .brief_txt{
+    padding-top: 0.5em;
+    text-align: center;
+    line-height: 1.77;
+    display: flex;
+    font-size: 18px;
+    margin-left: 6em;
+}
+
+#login .loginTitle{
+    color: #FF5C00;
+    align-items: center;
+}
+
+
+.forgot-password-link{
+    font-style: italic;
+    font-weight: 600;
+    position: relative;
+    color: #A4A4A4;
+    margin-left: 12em;
+}
+
+#loginbutton{
+    background-color: #FF8C22;
+    font-weight: 600;
+    color: #F9F9F9;
+    border: 2px;
+    border-radius: 6px;
+    font-size: 16.5px;
+    padding: 11px 40px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    margin-bottom: 1.3em;
+    cursor: pointer;
+    display: block;
+}
+
+#loginbutton:hover{
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.8);
+    opacity: 0.7;
+}
+
+
+.sign-up-link{
+    font-weight: bold;
+    color: #FF8C22;
+}
+
+#login #haveAcc{
+    margin-left: -2.85em;
+    margin-top: 1.5em;
+} 
+
+.login-eye-icon {
+    position: absolute;
+    right: 6.5em;
+    top: 53.5%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.errorMessage span {
+    color: red;
+    font-size: 13px;
+    position: absolute;
+    display: flex;
+    align-items: flex-start;
+    padding-left: 4em;
+    margin-top: -1.5em;
+}

@@ -1,0 +1,189 @@
+.rental-history,
+.pageMainContainer {
+  font-family: Poppins;
+  padding: 1em;
+  padding-top: 0.6em;
+  font-family: Poppins;
+  padding: 1em;
+  padding-top: 0.6em;
+}
+
+.rentalTitle {
+  font-weight: 600;
+  font-size: 35px;
+  color: hwb(22 0% 0%);
+  padding: 1em 0em 1.5em 1.5em;
+}
+
+.property-selector {
+  font-weight: 600;
+  font-size: 20px;
+  margin-top: -1%;
+  padding-left: 2.8em;
+  padding-bottom: 2em;
+}
+
+.Brief_Text {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 30px;
+  color: #8a8a8a;
+  margin-top: -1.8em;
+  padding-bottom: 11em;
+}
+
+.custom-select {
+  position: relative;
+  border: 2px solid black;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 450;
+  color: #000;
+  padding: 1em 2em 1em 1.4em;
+  cursor: pointer;
+  background-color: #fffbf4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 40em;
+  -webkit-appearance: none; /* Remove the native arrow for Webkit browsers */
+  -moz-appearance: none; /* Remove the native arrow for Firefox */
+  appearance: none; /* Remove the native arrow */
+  background: url("./Rental_Icon/drop_down_arrow.png") no-repeat right 2em
+    center; /* Adjust the right position as needed */
+  background-color: #fffbf4;
+  background-size: 0.9em; /* Adjust the size of the arrow as needed */
+}
+
+.custom-options {
+  position: absolute;
+  margin-top: 0.6em;
+  top: 100%;
+  left: 0;
+  right: 0;
+  border: 2px solid #8a8a8a;
+  color: #000;
+  font-weight: 500;
+  font-size: 15px;
+  border-radius: 12px;
+  background-color: #fffbf4;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+.custom-option {
+  padding: 0.8em 1em;
+  transition: background-color 0.3s ease;
+}
+
+.custom-option:focus {
+  outline: none;
+  background-color: #fffbf4;
+}
+
+.custom-option:first-child:hover {
+  border-radius: 12px 12px 0 0;
+  background-color: #bebebec8;
+}
+
+.custom-option:last-child:hover {
+  border-radius: 0px 0px 12px 12px;
+  background-color: #bebebec8;
+}
+
+.custom-option:hover {
+  background-color: #bebebec8;
+}
+
+.property-selector label {
+  padding-bottom: 1em;
+}
+
+
+.property-details{ 
+  padding-left: 3.3em; 
+  margin-top: 3em; 
+} 
+
+.propertyName {
+  font-weight: 600;
+  font-size: 28px;
+  padding-bottom: 1em;
+  margin-top: -1em;
+}
+
+.history-table { 
+  width: 85%; 
+  margin-top: 1em; 
+  margin-bottom: 5em; 
+  border: 2px solid black; 
+  border-collapse: collapse; 
+} 
+ 
+.history-table th,  
+.history-table td { 
+  padding: 3em; 
+  text-align: center; 
+  border: 0; 
+} 
+ 
+.history-table tr { 
+  position: relative; 
+} 
+
+.history-table tr::after {
+  content: "";
+  position: absolute;
+  cursor: pointer;
+  left: 2em;
+  right: 2em;
+  bottom: 0;
+  border-bottom: 1px solid black;
+}
+
+.history-table tbody tr:hover::after { 
+  content: ''; 
+  position: absolute; 
+  left: 2em;  
+  right: 2em;  
+  top: 0; 
+  bottom: 0; 
+  background-color: #DEDDDD;  
+  z-index: -1; /* Ensure it is below the content but above the border */ 
+} 
+ 
+.history-table th { 
+  background-color: white; 
+  font-size: 18px; 
+  font-weight: 600; 
+  padding-top: 1em; 
+  padding-bottom: 1em; 
+} 
+ 
+.history-table td { 
+  color: black; 
+  font-size: 16px; 
+  font-weight: 400;  
+  padding-top: 1.8em; 
+  padding-bottom: 1.8em; 
+  padding-left: 2em; 
+  padding-right: 2em; 
+  transition: background-color 0.3s;  
+} 
+ 
+.history-table td:last-child{ 
+  display: flex; 
+  text-align: center; 
+  align-items: center; 
+} 
+
+.downloadIcon {
+  margin-right: 1.2em;
+  cursor: pointer;
+}
+
+.comment_linkIcon {
+  padding-right: 2em;
+}

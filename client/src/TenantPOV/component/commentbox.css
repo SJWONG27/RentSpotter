@@ -1,0 +1,64 @@
+.comment-card {
+    align-self: stretch;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.29);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 2em 3.5em;
+    gap: 0.813rem;
+    text-align: left;
+    color: #000;
+    margin-left: 1.2em;
+    background-color: #FFFF;
+}
+
+.left-content .user-img {
+    height: 5rem;
+    width: auto;
+    border-radius: 0.2em;
+    object-fit: cover;
+}
+
+.comment-card .row-one {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.left-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.313rem;
+}
+
+.star {
+    height: 2.125rem;
+    padding-right: 0;
+}
+
+.comment-card:hover {
+    opacity: 0.9;
+    box-shadow: 1px 1px 3px;
+}
+
+.user-info-container .username {
+    color: black;
+    font-weight: 550;
+    font-size: larger;
+}
+
+.user-info-container .date {
+    color: #8A8A8A;
+}
+
+.comment-card .row-2 {
+    margin-top: 0.8em;
+}

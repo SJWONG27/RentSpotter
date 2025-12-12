@@ -1,0 +1,62 @@
+.editLandlordForm .checkbox {
+  display: flex;
+  align-items: start; /* Align items vertically */
+}
+
+.editLandlordForm .row-checkbox label {
+  font-size: 16px;
+  color: black;
+}
+
+.editLandlordForm .row-checkbox {
+  align-self: start;
+  flex-direction: row;
+  padding-bottom: 2em;
+}
+
+.editLandlordForm select {
+  width: 80%;
+  padding: 0.8em 2em 0.8em 1.2em;
+  border: 1px solid black;
+  border-radius: 2px;
+  margin-top: 0.2em;
+  font-size: 16px;
+}
+
+.editLandlordForm select option {
+  font-size: 16px;
+}
+
+.editLandlordForm ::placeholder {
+  color: #8a8a8a;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+#submitApplicationBtn {
+  background-color: #ff8c22;
+  font-weight: bold;
+  color: #fff6ea;
+  border: 1em;
+  border-radius: 0.5em;
+  padding: 0.7em 2.8em;
+  cursor: pointer;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  align-self: start;
+}
+
+#submitApplicationBtn:hover {
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.8);
+  opacity: 0.7;
+}
+
+.row-checkbox {
+  display: flex;
+  align-items: center; /* Align items vertically */
+  margin-bottom: 1em; /* Adjust margin as needed */
+}
+
+.row-checkbox .checkbox {
+  margin-right: 1.5em;
+}

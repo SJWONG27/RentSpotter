@@ -1,0 +1,89 @@
+.applicant-list-table {
+  width: 85%;
+  margin-top: 1em;
+  margin-bottom: 5em;
+  border: 2px solid black;
+  border-collapse: collapse;
+}
+
+.applicant-list-table th,
+.applicant-list-table td {
+  padding: 0.5em;
+  text-align: center;
+  border: 0;
+}
+
+.applicant-list-table {
+  position: relative;
+}
+
+.applicant-list-table tr {
+  cursor: pointer;
+  left: 2em;
+  right: 2em;
+  bottom: 0;
+  border-bottom: 1px solid black;
+}
+
+.applicant-list-table th {
+  background-color: white;
+  font-size: 18px;
+  font-weight: 600;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.applicant-list-table td {
+  color: black;
+  font-size: 16px;
+  font-weight: 400;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 2em;
+  padding-right: 2em;
+  transition: background-color 0.3s;
+}
+
+.applicant-list-table tr:hover {
+  left: 2em;
+  right: 2em;
+  top: 0;
+  bottom: 0;
+  background-color: #dedddd;
+  z-index: -1;
+}
+
+.property-selectors-group {
+    display: flex;
+    column-gap: 2.5em;
+    margin-bottom: 3em;
+}
+
+.applicant-list-table .signedDownloadText {
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: large;
+}
+
+.applicant-list-table .signedStatusData:hover .signedDownloadText {
+  color: #fda14c;
+}
+
+.applicant-list-table .signedDownloadIcon {
+  margin-left: 0.8em;
+  margin-bottom: 0.3em;
+}
+
+.applicant-list-table .ratingStarsGroup {
+  margin-right: 2em;
+}
+
+.applicant-list-table .rating-star {
+  margin-right: -2em;
+}
+
+@media screen and (max-width: 1000px) {
+  .property-selectors-group {
+    display: block;
+  }
+}

@@ -1,0 +1,49 @@
+.status-panel-child {
+    height: 6.563rem;
+    width: 100%;
+    position: relative;
+    background-color: #ffe6d0;
+    display: none;
+    max-width: 110%;
+}
+
+.status {
+    margin: 0;
+    height: auto;
+    width: 100%;
+    position: relative;
+    text-transform: capitalize;
+    font-weight: 600;
+    font-family: inherit;
+    display: inline-block;
+    flex-shrink: 0;
+    max-width: 100%;
+    z-index: 1;
+}
+
+.status-panel {
+    background-color: #ffe6d0;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-block: 1.7rem;
+    box-sizing: border-box;
+    width: 100%;
+    justify-content: center;
+    align-self: stretch;
+    display: flex;
+    align-items: flex-start;
+    margin-top: 5em;
+    margin-bottom: 1em;
+    font-weight: bolder;
+}
+
+.status-action {
+    margin: 0;
+    position: relative;
+    font-weight: 520;
+    text-transform: capitalize;
+    display: inline-block;
+    flex-shrink: 0;
+    max-width: 100%;
+    z-index: 1;
+  }

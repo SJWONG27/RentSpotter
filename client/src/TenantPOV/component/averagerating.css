@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-family: 'Poppins';
+}
+
+.avg-rating-group .avg-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    margin-right: 1rem; /* Adjust the margin as needed */
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.avg-rating-group .avg-stars-img {
+    height: 1.8em;
+}
+
+.avg-rating-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    width: max-content;
+    column-gap: 0.2em;
+    align-items: center;
+}
+
+.avg-rating-group .review-number {
+    font-weight: 580;
+    font-size: 1.1em;
+    color: #B3B3B3;
+    margin-top: 0.35em;
+}
+
+.avg-rating-group .review-score {
+    font-weight: 580;
+    font-size: 1.1em;
+    color: #F28E19;
+    margin-top: 0.15em;
+}

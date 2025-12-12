@@ -1,0 +1,324 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  font-family: "Poppins";
+}
+
+#Home {
+  width: 100%;
+  height: 90vh;
+  background-image: url("/public/Images/generalPageBackground.png");
+  background-size: cover;
+  background-position: 0em;
+}
+
+.generalContent {
+  margin-bottom: 10em;
+}
+
+#Home .container {
+  padding-inline: 0;
+  margin-inline: 0;
+  width: 100%;
+}
+
+#Home #backgroundImg {
+  width: 115%;
+  height: auto;
+  display: block;
+}
+
+#Home #hoverText {
+  display: inline-block;
+  color: #f0f0f0;
+}
+
+#filter {
+  margin-block: 2em;
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+#filter .row-cols-1 {
+  padding-left: 6%;
+}
+
+#filter .searchButton {
+  margin-left: 6.2%;
+}
+
+#filter .col {
+  align-items: center;
+  justify-content: space-between;
+}
+
+#filter .subTitle {
+  font-weight: 600;
+  font-size: 35px;
+  color: hwb(22 0% 0%);
+  margin-bottom: 1.35em;
+  margin-top: 2.725em;
+}
+
+#filter .form-select {
+  position: relative;
+  border: 2px solid black;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 450;
+  color: #000;
+  padding: 1em 2em 1em 1.4em;
+  cursor: pointer;
+  background-color: #fffbf4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 22em;
+  -webkit-appearance: none; /* Remove the native arrow for Webkit browsers */
+  -moz-appearance: none; /* Remove the native arrow for Firefox */
+  appearance: none; /* Remove the native arrow */
+  background: url("/public/Images/drop_down_arrow.png") no-repeat right 2em
+    center; /* Adjust the right position as needed */
+  background-color: #fffbf4;
+  background-size: 0.9em; /* Adjust the size of the arrow as needed */
+}
+
+#filter .form-select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #fffbf4;
+}
+
+#filter .Specificform-select {
+  position: relative;
+  border: 2px solid black;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 450;
+  color: #000;
+  padding: 1em 2em 1em 1.4em;
+  cursor: pointer;
+  background-color: #fffbf4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 30em;
+  -webkit-appearance: none; /* Remove the native arrow for Webkit browsers */
+  -moz-appearance: none; /* Remove the native arrow for Firefox */
+  appearance: none; /* Remove the native arrow */
+  background: url("/public/Images/drop_down_arrow.png") no-repeat right 2em
+    center; /* Adjust the right position as needed */
+  background-color: #fffbf4;
+  background-size: 0.9em; /* Adjust the size of the arrow as needed */
+  outline: none;
+  box-shadow: 0 0 0 2px #fffbf4;
+}
+
+#filter .Specificform-select {
+  position: relative;
+  border: 2px solid black;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 450;
+  color: #000;
+  padding: 1em 2em 1em 1.4em;
+  cursor: pointer;
+  background-color: #fffbf4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 30em;
+  -webkit-appearance: none; /* Remove the native arrow for Webkit browsers */
+  -moz-appearance: none; /* Remove the native arrow for Firefox */
+  appearance: none; /* Remove the native arrow */
+  background: url("/public/Images/drop_down_arrow.png") no-repeat right 2em
+    center; /* Adjust the right position as needed */
+  background-color: #fffbf4;
+  background-size: 0.9em; /* Adjust the size of the arrow as needed */
+}
+
+.View-Button {
+  background-color: #ff8c22;
+  font-weight: 600;
+  color: #fff6ea;
+  border: 2px;
+  border-radius: 6px;
+  font-size: 16px;
+  padding: 10px 38px;
+  margin-top: 3.125em;
+  cursor: pointer;
+  margin-bottom: 2em;
+}
+
+.View-Button:hover {
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.8);
+  opacity: 0.7;
+}
+
+.searchButton {
+  background-color: #ff8c22;
+  font-weight: 600;
+  color: #fff6ea;
+  border: 2px;
+  border-radius: 6px;
+  font-size: 16px;
+  padding: 10px 38px;
+  cursor: pointer;
+  margin-top: 0.8em;
+  margin-bottom: 2em;
+}
+
+.searchButton:hover {
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.8);
+  opacity: 0.7;
+}
+
+#recommendation {
+  width: 100%;
+  background-color: #f0f0f0;
+  overflow-x: hidden;
+}
+
+.recommendationTitle,
+.propertyTitle {
+  color: #ff5c00;
+  padding-top: 30px;
+  margin-left: 3.14em;
+}
+
+.row-cols-1 {
+  display: flex;
+  justify-content: center;
+}
+
+#recommendation .row {
+  padding: 1em 6em;
+  justify-content: start;
+}
+
+#recommendation .card-img-top {
+  padding: 1.35em;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  width: 385px;
+  height: 280px;
+  align-self: center;
+}
+
+#recommendation .roomIconsGroup,
+#property .roomIconsGroup {
+  margin-bottom: -8px;
+  display: flex;
+  justify-content: space-around;
+  box-sizing: content-box;
+  border: 1.5px solid black;
+  border-left: white;
+  border-right: white;
+  flex-direction: row;
+}
+
+#recommendation .roomIconsGroup .roomDetailsOneIconGroup {
+  list-style: none;
+  margin: 0.6em;
+  margin-left: -1.6em;
+  font-weight: 500;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 0.6em;
+}
+
+#recommendation .card:hover {
+  opacity: 0.7;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+
+#recommendation .card-title1 {
+  font-weight: 600;
+  margin-bottom: 0.6em;
+}
+
+#recommendation .card-title2 {
+  font-weight: 500;
+  font-size: 19px;
+}
+
+#recommendation .card-text {
+  color: rgba(23, 22, 22, 0.6);
+  font-weight: 500;
+  font-size: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.6em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Number of lines to show before truncating */
+  -webkit-box-orient: vertical;
+}
+
+#recommendation .card-desription-container {
+  padding-bottom: 1.5em;
+}
+
+#recommendation .viewButton,
+#recommendation .manageButton,
+#recommendation .uploadButton {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.uploadButton {
+  border: 2px;
+  border-radius: 6px;
+  padding: 10px 30px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 1.6em;
+  margin-left: -1em;
+}
+
+#info {
+  content: 200%;
+  display: flex;
+}
+
+#info .col {
+  padding-top: 3.125em;
+  display: flex;
+}
+
+#info .contain {
+  text-align: center;
+  justify-content: start;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#info h5 {
+  font-weight: bold;
+  padding-top: 30px;
+}
+
+#info .highlightText {
+  color: #ff8c22;
+}
+
+#info p {
+  text-align: justify;
+  padding-top: 10px;
+}
+
+#recommendation .card-body {
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-top: -0.9em;
+}
+
+.noPropertyPromptText {
+  font-size: x-large;
+  padding-block: 3em;
+  text-align: center;
+  color: rgba(23, 22, 22, 0.6);
+  font-weight: 400;
+}

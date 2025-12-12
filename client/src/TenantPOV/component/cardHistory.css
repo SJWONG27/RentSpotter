@@ -1,0 +1,129 @@
+.property-actions {
+  margin-bottom: auto;
+  margin-right: 0em;
+  align-items: end;
+}
+
+.history-listing {
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin-left: 3em;
+  margin-right: 3.8em;
+  margin-bottom: 4em;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 1em;
+  background: #fff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.468);
+}
+
+.rentalHistory-image img {
+  width: 12.5em;
+  height: 11em;
+  border-radius: 20px;
+  margin-left: 1.4em;
+  margin-right: 2.8em;
+}
+
+.rental_historyTitle {
+  font-weight: 600;
+  text-decoration: underline;
+  font-size: 24px;
+  padding-bottom: 0.6em;
+  line-height: 30px;
+}
+
+.descript_rental {
+  color: rgba(47, 47, 47, 0.76);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 30px;
+}
+
+.descript_duration {
+  font-weight: 530;
+  font-size: 17px;
+  line-height: 30px;
+  padding-bottom: 2.8em;
+}
+
+.rentalHistory-details {
+  flex-grow: 1;
+  align-items: center;
+  margin-top: 4em;
+}
+
+.rentalList_statusCard.active .view-agreement-btn {
+  margin-top: 0.3em;
+  align-items: flex-end;
+  background-color: #ff8c22;
+  color: white;
+  border: none;
+  padding: 10px 60px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.rentalList_statusCard.expired .expired-btn {
+  margin-top: 0.3em;
+  background-color: #333f48;
+  color: white;
+  border: none;
+  padding: 10px 60px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.rentalList_statusCard .view-agreement-btn,
+.rentalList_statusCard .expired-btn {
+  position: absolute;
+  right: 0.001em;
+  z-index: 2;
+}
+
+.rentalList_statusCard .view-agreement-btn,
+.rentalList_statusCard .expired-btn {
+  position: absolute;
+  right: 0.001em;
+  z-index: 2;
+}
+
+.contact-icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-top: 5em;
+}
+
+.rentalTenant-download {
+  margin-right: 1.5em;
+}
+
+.contact-icons {
+  position: relative;
+  margin-right: 2em;
+}
+
+.contact-icons img,
+.contact-icons svg {
+  height: 3em;
+  width: auto;
+  cursor: pointer;
+}
+
+.Rental-Card .history-listing:hover {
+  opacity: 0.7;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+
+.cardRental_subtitle {
+  font-size: 31px;
+  color: black;
+  font-weight: 600;
+  margin-left: 1.8em;
+  padding-bottom: 0.8em;
+}

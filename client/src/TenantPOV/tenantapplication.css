@@ -1,0 +1,31 @@
+.pageMainContainer {
+  font-family: Poppins;
+  padding: 1em;
+  padding-top: 0.6em;
+}
+
+.pageMainTitle {
+  font-weight: 600;
+  font-size: 35px;
+  color: hwb(22 0% 0%);
+  padding: 1em 0em 1.5em 1.5em;
+}
+
+.applicationSubTitle,
+.pageMainSubTitle{
+    font-size: 31px; 
+    color: black; 
+    font-weight: 600; 
+    margin-left: 1.8em; 
+    padding-bottom: 0.8em; 
+    margin-top: -0.8em;
+}
+
+.applicationPromptTitle {
+  font-size: 21px; 
+  color:#767676;
+  margin-left: 2.5em; 
+  font-weight: 500; 
+  padding-bottom: 5em; 
+  margin-top: -0.8em;
+}

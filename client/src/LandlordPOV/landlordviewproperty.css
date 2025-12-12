@@ -1,0 +1,212 @@
+*{
+    font-family: 'Poppins';
+}
+
+#PropertyImage .container {
+    position: relative; /* Required for absolute positioning */
+    padding: 0;
+    margin: 0;
+}
+
+.imageContainer {
+    position: relative; /* Required for absolute positioning */
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    transition: transform 2s ease;
+}
+
+.propertyImageContainer {
+    position: relative;
+    flex: 1 0 auto;
+    width: 48em; /* Adjust max-width if necessary */
+    height: 30em; 
+    overflow: hidden;
+}
+
+.propertyImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This will crop the images to fit the container */
+    display: block;
+}
+
+.buttonContainer {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: -15%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding-inline: 0.5em;
+}
+
+.imgPageIconContainer {
+    position: absolute;
+    top: 94.5%;
+    right: -14.5%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    transform: translateY(-50%);
+    column-gap: 0.45em;
+    padding-inline: 0.35em;
+    padding-block: 0.35em;
+    background-color: rgba(0, 0, 0, 0.64);
+} 
+
+.imgPageText {
+    color: white;
+    font-size: 1.35em;
+    font-weight: 300;
+}
+
+.imgPageIcon {
+    color: #FFFFFF;
+    width: auto;
+    height: 1.2em;
+}
+
+.previousButton,
+.nextButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.previousButton:hover svg ellipse,
+.nextButton:hover svg ellipse {
+    fill: white;
+    fill-opacity: 0.9;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+#propertyImage2 {
+    padding-left: 1.3em;
+}
+
+#PropertyDetails .container,
+#PropertyDetails {
+    margin-top: 2em;
+    width: 100%;
+}
+
+.applyButton {
+    display: flex;
+    justify-content: center;
+    padding-right: 2em;
+}
+
+.editNowButton:hover,
+.deleteNowButton:hover {
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.8);
+  opacity: 0.7;
+}
+
+.deleteNowButton{
+  font-weight: 600;
+  color: #fff6ea;
+  border: 1em;
+  border-radius: 0.5em;
+  padding: 0.75em 3em;
+  cursor: pointer;
+  margin-top:-1.8em ;
+  font-size: 20px;
+  width: fit-content;
+  align-self: end;
+  background-color: #b90000;
+  padding-inline: 5.5em;
+}
+
+.editNowButton{
+  font-weight: 600;
+  color: #fff6ea;
+  border: 1em;
+  border-radius: 0.5em;
+  padding: 0.75em 3em;
+  cursor: pointer;
+  margin-top:-1.8em ;
+  margin-right: 0.6em;
+  margin-left: 1em;
+  font-size: 20px;
+  width: fit-content;
+  align-self: end;
+  background-color: #ff8c22;
+  padding-inline: 5.5em;
+}
+
+#Comment {
+    width: 100%;
+    background-color: #ffff;
+    overflow-x: hidden;
+}
+
+.commentTitle {
+    color: #FF5C00;;
+    padding-top: 3em;
+    margin-left: 3.3em;
+    font-weight: 560;
+    font-size: xx-large;
+}
+
+.comment-avg {
+    margin-left: 5.8em;
+    margin-top: 0.5em;
+    font-size: large;
+    margin-bottom: 2em;
+}
+
+.comment-grid,
+.comments {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.comment-grid {
+    width: 88rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 2rem;
+    gap: 2.563rem;
+}
+
+.comments {
+  width: 88.694rem;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0 1.25rem 1.875rem;
+  font-size: 1rem;
+  margin-left: 0.05em;
+  margin-bottom: 5em;
+  margin-top: 1.2em;
+}
+
+.Landlord_commentPromptTitle {
+    font-size: 25px; 
+    color:#767676;
+    margin-left: 1em; 
+    font-weight: 500; 
+    padding-bottom: 5em; 
+    margin-top: 0.5em;
+}
+
+.applicantReviewDetails .ratingStarsGroup {
+    margin-right: 1.3em;
+    margin-left: -1em;
+}
+
+.applicantReviewDetails .rating-star {
+    margin-right: -2.2em;
+}
+
+#LandlordPropertyButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 6em;
+    margin-bottom: 10em;
+    column-gap: 8em;
+}

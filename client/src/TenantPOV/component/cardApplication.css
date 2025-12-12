@@ -1,0 +1,115 @@
+.applicationList_card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.applicationList_card .rentalHistory-details {
+  align-self: start;
+}
+
+.history-listing .view-lease-btn {
+  background-color: #009017;
+  color: white;
+  border: none;
+  padding: 10px 60px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.history-listing .rejected-btn {
+  background-color: #b90000;
+  color: white;
+  border: none;
+  padding: 10px 60px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+
+.history-listing .Expired-btn {
+  background-color: #333f48;
+  color: white;
+  border: none;
+  padding: 10px 60px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+
+.facilities-icons {
+  display: flex;
+  column-gap: 5em;
+  align-items: center;
+  padding-bottom: 2.5em;
+}
+
+.facilities-per-icon {
+  display: flex;
+  align-items: stretch;
+  column-gap: 1.5em;
+}
+
+.icon-text {
+  color: rgba(47, 47, 47, 0.76);
+  font-weight: 500;
+  font-size: 1.2em;
+  padding-top: 1em;
+}
+
+.facilities-icons .bedroomIcon {
+  width: 2.7em;
+  height: 2.4em;
+  align-self: center;
+}
+
+.facilities-icons .bathroomIcon {
+  width: 2.5em;
+  height: 2.5em;
+  align-self: center;
+  margin-bottom: -0.2em;
+}
+
+.facilities-icons .sqftIcon {
+  width: 2.2em;
+  height: 2.2em;
+  align-self: center;
+}
+
+.history-listing .view-lease-btn,
+.history-listing .pending-btn,
+.history-listing .rejected-btn,
+.history-listing .Expired-btn  {
+  position: absolute;
+  right: 0.001em;
+  z-index: 2;
+}
+
+.propertyPriceApplication {
+  align-items: start;
+  justify-content: space-around;
+  padding-top: 5.8em;
+  padding-right: 2em;
+  font-weight: 600;
+  color: #ff5c00;
+  font-size: 2.15em;
+}
+
+.history-listing .pending-btn {
+  align-items: flex-end;
+  background-color: #ff8c22;
+  color: white;
+  border: none;
+  padding: 10px 60px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.applicationList_card .history-listing:hover {
+  opacity: 0.7;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
