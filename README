@@ -1,0 +1,11 @@
+### Frontend
+cd client
+rm -rf node_modules
+npm install
+npm start
+
+
+### Backend
+Use IntelJ better bahh haha
+just start the application under src/main/java/com.rentspotter.RentSpotter.RentSpotterApplication
+
