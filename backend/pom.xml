@@ -27,7 +27,7 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -98,6 +98,11 @@
 <!--			<artifactId>spring-boot-starter-webmvc-test</artifactId>-->
 <!--			<scope>test</scope>-->
 <!--		</dependency>-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -108,5 +113,27 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>osgi-bundle</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.felix</groupId>
+						<artifactId>maven-bundle-plugin</artifactId>
+						<version>5.1.9</version>
+						<extensions>true</extensions>
+						<configuration>
+							<instructions>
+								<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+								<Import-Package>*</Import-Package>
+								<Export-Package>com.rentspotter.RentSpotter.*</Export-Package>
+							</instructions>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 </project>
