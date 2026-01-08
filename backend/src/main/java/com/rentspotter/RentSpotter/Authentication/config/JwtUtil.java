@@ -1,4 +1,4 @@
-package com.rentspotter.RentSpotter.config;
+package com.rentspotter.RentSpotter.Authentication.config;
 
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;

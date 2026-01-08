@@ -1,14 +1,13 @@
-package com.rentspotter.RentSpotter.service;
+package com.rentspotter.RentSpotter.Authentication.service;
 
-import com.rentspotter.RentSpotter.config.JwtUtil;
-import com.rentspotter.RentSpotter.model.User;
-import com.rentspotter.RentSpotter.repository.UserRepository;
-import com.rentspotter.RentSpotter.dto.RegisterRequest;
+import com.rentspotter.RentSpotter.Authentication.config.JwtUtil;
+import com.rentspotter.RentSpotter.Authentication.model.User;
+import com.rentspotter.RentSpotter.Authentication.repository.UserRepository;
+import com.rentspotter.RentSpotter.Authentication.dto.RegisterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Service
 public class UserService {

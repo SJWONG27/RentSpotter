@@ -1,4 +1,4 @@
-package com.rentspotter.RentSpotter.config;
+package com.rentspotter.RentSpotter.Authentication.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

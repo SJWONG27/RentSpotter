@@ -1,4 +1,4 @@
-package com.rentspotter.RentSpotter.dto;
+package com.rentspotter.RentSpotter.Authentication.dto;
 
 public class RegisterRequest {
     private String email;

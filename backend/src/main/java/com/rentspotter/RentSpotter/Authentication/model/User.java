@@ -1,4 +1,4 @@
-package com.rentspotter.RentSpotter.model;
+package com.rentspotter.RentSpotter.Authentication.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

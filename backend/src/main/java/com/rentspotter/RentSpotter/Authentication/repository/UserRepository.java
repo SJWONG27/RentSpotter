@@ -1,6 +1,6 @@
-package com.rentspotter.RentSpotter.repository;
+package com.rentspotter.RentSpotter.Authentication.repository;
 
-import com.rentspotter.RentSpotter.model.User;
+import com.rentspotter.RentSpotter.Authentication.model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 
