@@ -16,15 +16,15 @@ const TenantApplication = () => {
     const token = localStorage.getItem('token');
     if (token) {
       const decodedToken = jwtDecode(token);
-      const userId = decodedToken.userId;
+      const userId = decodedToken.userId || decodedToken.sub;
 
       async function fetchApplication() {
         setLoading(true);
         try {
-          const response = await axios.get(`/api/applications/tenantApplication/${userId}`, {
+          const response = await axios.get(`/api/applications/tenant/${userId}`, {
             headers: { Authorization: `Bearer ${token}` }
           });
-          console.log("Applications fetched:", response.data);
+          console.log("Applications fetched for tenant:", userId, response.data);
           setApplicationList(response.data);
         } catch (err) {
           console.error("Error fetching applications data:", err);
@@ -47,7 +47,7 @@ const TenantApplication = () => {
       setLoading(true);
       try {
         const promises = applicationList.map(async (application) => {
-          const response = await axios.get(`/api/applications/ViewProperty/${application.propertyId}`);
+          const response = await axios.get(`/api/landlord/properties/${application.propertyId}`);
           console.log("Property fetched for application:", application, response.data);
           return { property: response.data, application };
         });
@@ -58,7 +58,7 @@ const TenantApplication = () => {
         const landlordIds = [...new Set(propertyData.map(data => data.property.landlordId))];
         const landlordResponses = await Promise.all(landlordIds.map(id => axios.get(`/api/users/${id}`)));
         const landlords = landlordResponses.reduce((acc, curr) => {
-          acc[curr.data.data._id] = curr.data.data.username;
+          acc[curr.data.id || curr.data._id] = curr.data.username;
           return acc;
         }, {});
 
@@ -71,16 +71,19 @@ const TenantApplication = () => {
         const otherListings = [];
 
         enrichedPropertyData.forEach((property) => {
-          const application = applicationList.find(app => app.propertyId === property._id);
+          const propertyId = property.id || property._id;
+          const application = applicationList.find(app => app.propertyId === propertyId);
+          if (!application) return;
+
           const listing = {
-            applicationId: application._id,
+            applicationId: application.id || application._id,
             propertyId: application.propertyId,
             title: property.name,
             locationOwner: `${property.location} | ${property.type} rented out by ${property.landlordUsername}`,
             imgSrc: `http://localhost:5000/uploads/${property.coverPhoto}`,
-            isViewLease: application.applicationStatus === "Approved",
-            isPending: application.applicationStatus === "Pending",
-            isRejected: application.applicationStatus === "Rejected",
+            isViewLease: application.status === "Approved",
+            isPending: application.status === "Pending" || application.status === "PENDING",
+            isRejected: application.status === "Rejected",
             bedroom: property.bedroom,
             bathroom: property.bathroom,
             sqft: `${property.buildUpSize} Sqft`,
@@ -89,7 +92,7 @@ const TenantApplication = () => {
 
           console.log("Card Data: ", property, application, listing);
 
-          if (application.applicationStatus === "Approved") {
+          if (application.status === "Approved") {
             actionListings.push(listing);
           } else {
             otherListings.push(listing);

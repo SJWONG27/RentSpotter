@@ -56,6 +56,7 @@ public class UserController {
         Map<String, Object> response = new HashMap<>();
         response.put("status", "success");
         response.put("username", user.getUsername());
+        response.put("overallRating", user.getOverallRating());
 
         return ResponseEntity.ok(response);
     }

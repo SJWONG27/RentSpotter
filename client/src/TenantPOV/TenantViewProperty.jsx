@@ -21,10 +21,10 @@ const TenantViewProperty = () => {
     useEffect(() => {
         const fetchProperty = async () => {
             try {
-                const response = await axios.get(`/api/applications/ViewProperty/${propertyId}`); // Adjust the endpoint if necessary
+                const response = await axios.get(`/api/landlord/properties/${propertyId}`); // Adjust the endpoint if necessary
                 const propertyData = response.data;
                 const baseURL = 'http://localhost:5000/uploads/';
-                const images = [propertyData.coverPhoto, ...propertyData.photos].map(photo => `${baseURL}${photo}`);
+                const images = [propertyData.coverPhoto, ...(propertyData.photos || [])].map(photo => `${baseURL}${photo}`);
                 setProperty(propertyData);
                 setPropertyImageSrc(images);
                 setLandlordId(propertyData.landlordId);
@@ -71,7 +71,7 @@ const TenantViewProperty = () => {
                         const token = localStorage.getItem('token');
                         if (token) {
                             const decodedToken = jwtDecode(token);
-                            const userId = decodedToken.userId;
+                            const userId = decodedToken.userId || decodedToken.sub;
                             nav(`/tenantApplyForm/${propertyId}/${userId}/${landlordId}`)
                         } else {
                             console.log("Token not found");

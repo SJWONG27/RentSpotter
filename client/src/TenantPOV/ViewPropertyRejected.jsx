@@ -20,10 +20,10 @@ const ViewPropertyRejected = () => {
     useEffect(() => {
         const fetchProperty = async () => {
             try {
-                const response = await axios.get(`/api/applications/ViewProperty/${propertyId}`); // Adjust the endpoint if necessary
+                const response = await axios.get(`/api/landlord/properties/${propertyId}`); // Adjust the endpoint if necessary
                 const propertyData = response.data;
                 const baseURL = 'http://localhost:5000/uploads/';
-                const images = [propertyData.coverPhoto, ...propertyData.photos].map(photo => `${baseURL}${photo}`);
+                const images = [propertyData.coverPhoto, ...(propertyData.photos || [])].map(photo => `${baseURL}${photo}`);
                 setProperty(propertyData);
                 setPropertyImageSrc(images);
                 setLandlordId(propertyData.landlordId);

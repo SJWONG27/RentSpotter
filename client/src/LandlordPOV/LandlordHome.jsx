@@ -48,31 +48,37 @@ const LandlordHome = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      const decodedToken = jwtDecode(token);
-      setLandlordId(decodedToken.userId);
+      try {
+        const decodedToken = jwtDecode(token);
+        console.log("Decoded token in LandlordHome:", decodedToken);
+        const userId = decodedToken.sub || decodedToken.userId;
+        setLandlordId(userId);
 
-      async function fetchProperties() {
-        try {
-          const response = await axios.get(`/api/properties/user/${decodedToken.userId}`, {
-            headers: { Authorization: `Bearer ${token}` }
-          });
-          if (Array.isArray(response.data)) {
-            setPropertyList(response.data);
-          } else {
-            console.error("Fetched data is not an array:", response.data);
+        async function fetchProperties() {
+          try {
+            const response = await axios.get(`/api/landlord/properties/user/${userId}`, {
+              headers: { Authorization: `Bearer ${token}` }
+            });
+            if (Array.isArray(response.data)) {
+              setPropertyList(response.data);
+            } else {
+              console.error("Fetched data is not an array:", response.data);
+            }
+          } catch (err) {
+            console.error("Error fetching properties:", err);
           }
-        } catch (err) {
-          console.error("Error fetching properties:", err);
         }
+        fetchProperties();
+      } catch (err) {
+        console.error("Error decoding token in LandlordHome:", err);
       }
-      fetchProperties();
     }
   }, []);
 
   useEffect(() => {
     if (propertyList.length > 0) {
       const mappedCardData = propertyList.map((property) => ({
-        propertyId: property._id,
+        propertyId: property.id || property._id,
         imgSrc: `http://localhost:5000/uploads/${property.coverPhoto}`,
         cardTitle1: `RM ${property.price} Per Month`,
         cardTitle2: property.name,

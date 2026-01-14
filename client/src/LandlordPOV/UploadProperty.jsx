@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios"; 
+import { jwtDecode } from 'jwt-decode';
 import "../LandlordPOV/editlandlordprofile.css";
 import "../LandlordPOV/landlord_history.css";
 import greyCircle from "./Images/greyCircle.png";
@@ -21,7 +22,22 @@ const UploadProperty = () => {
   const [selectedFloor, setSelectedFloor] = useState("");
   const [selected, setSelected] = useState(null);
   const nav = useNavigate();
-  const {landlordId} = useParams();
+  const {landlordId: paramLandlordId} = useParams();
+  const [landlordId, setLandlordId] = useState(paramLandlordId);
+
+  useEffect(() => {
+    if (!landlordId) {
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          const decoded = jwtDecode(token);
+          setLandlordId(decoded.sub || decoded.userId);
+        } catch (err) {
+          console.error("Failed to decode token:", err);
+        }
+      }
+    }
+  }, [landlordId]);
 
   const [formData, setFormData] = useState({
     editPropertyName: '',
@@ -99,10 +115,23 @@ const UploadProperty = () => {
 
     if (Object.keys(validationErrors).length === 0) {
       const token = localStorage.getItem('token');
+      let currentLandlordId = landlordId;
+      
+      if (!currentLandlordId && token) {
+        try {
+          const decoded = jwtDecode(token);
+          currentLandlordId = decoded.sub || decoded.userId;
+        } catch (err) {
+          console.error("Failed to decode token in handleNext:", err);
+        }
+      }
+
       console.log("FormData:", formData);
       console.log("Token:", token);
+      console.log("LandlordId:", currentLandlordId);
+
       try {
-        const response = await axios.post(`/api/landlord/properties/upload/${landlordId}`, {
+        const response = await axios.post(`/api/landlord/properties/upload/${currentLandlordId}`, {
           name: formData.editPropertyName,
           type: selected, 
           address: formData.editAddress,
@@ -125,7 +154,7 @@ const UploadProperty = () => {
         });
 
         if (response.status === 201) {
-          const propertyId = response.data._id;
+          const propertyId = response.data.id || response.data._id;
           // Navigate to the next step or show success message
           console.log("Saved property info successfully.")
           nav(`/landlordUploadPropertyPhoto/${propertyId}`);

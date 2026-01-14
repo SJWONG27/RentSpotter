@@ -1,0 +1,524 @@
+Reinitialized existing Git repository in C:/Users/Muhammad/Desktop/CBSE PROJECT/rentspotter_spring_backend-main/rentspotter_spring_backend-main/.git/
+error: remote origin already exists.
+warning: in the working copy of '.idea/vcs.xml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'README', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/.gitignore', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/.mvn/wrapper/maven-wrapper.properties', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/mvnw', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/mvnw.cmd', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/pom.xml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/src/main/java/com/rentspotter/RentSpotter/Authentication/config/JwtUtil.java', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/src/main/java/com/rentspotter/RentSpotter/Authentication/config/SecurityConfig.java', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/src/main/java/com/rentspotter/RentSpotter/Authentication/config/WebConfig.java', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/src/main/java/com/rentspotter/RentSpotter/Authentication/controller/UserController.java', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/src/main/java/com/rentspotter/RentSpotter/Authentication/dto/RegisterRequest.java', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/src/main/java/com/rentspotter/RentSpotter/Authentication/model/User.java', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/src/main/java/com/rentspotter/RentSpotter/Authentication/repository/UserRepository.java', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/src/main/java/com/rentspotter/RentSpotter/Authentication/service/UserService.java', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/src/main/java/com/rentspotter/RentSpotter/LandlordPropertyManagement/test.java', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/src/main/java/com/rentspotter/RentSpotter/LeaseAgreementManagement/test.java', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/src/main/java/com/rentspotter/RentSpotter/RentSpotterApplication.java', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/src/main/java/com/rentspotter/RentSpotter/RentalHistoryAnalytic/test.java', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/src/main/java/com/rentspotter/RentSpotter/ReviewApplicantManagement/test.java', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/src/main/java/com/rentspotter/RentSpotter/TenantApplication/test.java', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/src/main/resources/application.properties', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'backend/src/test/java/com/rentspotter/RentSpotter/RentSpotterApplicationTests.java', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/.gitignore', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/components.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/package-lock.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/package.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/public/index.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/public/manifest.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/public/robots.txt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/App.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/App.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/App.test.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/GeneralPage/Commercial.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/GeneralPage/Condo.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/GeneralPage/Footer.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/GeneralPage/Home.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/GeneralPage/Navbar.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/GeneralPage/ViewProperty.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/GeneralPage/footer.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/GeneralPage/home.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/GeneralPage/navbar.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/Hooks/useLogin.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/Hooks/useSignup.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/Alert.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/Alert.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/ArrangePhoto.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/CardComment.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/EditLandlordProfile.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/EditPhoto.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/LandlordApplicant.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/LandlordApplicantFeedback.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/LandlordComment.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/LandlordHistory.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/LandlordHome.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/LandlordNavbar.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/LandlordViewProperty.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/UpdateProperty.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/UploadProperty.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/UploadPropertyPhoto.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/arrangephoto.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/cardComment.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/component/AverageRating.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/component/CommentBox.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/component/DetailsPanel.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/component/LandlordStarsGroup.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/component/averagerating.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/component/commentbox.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/component/detailspanel.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/components/ui/3d-card.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/components/ui/flip-words.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/components/ui/utils/cn.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/components/ui/utils/tailwind.config.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/editlandlordprofile.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/editphoto.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/landlordApplicantFeedback.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/landlord_history.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/landlordapplicant.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/landlordhome.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/landlordviewproperty.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/updateproperty.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LandlordPOV/uploadpropertyphoto.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LeaseAgreement/AgreementFull.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LeaseAgreement/AgreementFullView.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LeaseAgreement/AgreementText.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LeaseAgreement/landlord/LandlordAgreementFormPage.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LeaseAgreement/landlord/LandlordAgreementPage1.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LeaseAgreement/landlord/LandlordAgreementPage2.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LeaseAgreement/landlord/LandlordAgreementPage3.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LeaseAgreement/tenant/TenantAgreementFormPage.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LeaseAgreement/tenant/TenantAgreementHome.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LeaseAgreement/tenant/TenantAgreementLastPage.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LeaseAgreement/tenant/TenantAgreementPage1.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LeaseAgreement/tenant/TenantAgreementPage2.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LeaseAgreement/tenant/TenantAgreementPage3.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LogIn/ForgotPassword.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LogIn/LogIn.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LogIn/ResetPassword.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LogIn/forgotpassword.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/LogIn/login.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/RegisterAcc/RegisterLandlordAcc.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/RegisterAcc/RegisterTenantAcc.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/RegisterAcc/SignIn.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/RegisterAcc/registeracc.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/RegisterAcc/signin.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/ShowNavFooter/ShowNavbar.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/ShowNavbarFooter/ShowFooter.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/ShowNavbarFooter/ShowNavbar.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/EditTenantProfile.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/RentTenant.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/TenantApplication.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/TenantApplyForm.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/TenantComment.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/TenantHome.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/TenantNavbar.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/TenantViewProperty.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/ViewPropertyActive.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/ViewPropertyLease.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/ViewPropertyPending.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/ViewPropertyRejected.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/component/AverageRating.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/component/CardApplication.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/component/CardRent.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/component/CommentBox.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/component/CommentSection.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/component/DetailsPanel.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/component/PropertyStatus.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/component/StarsGroup.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/component/averagerating.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/component/cardApplication.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/component/cardHistory.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/component/commentbox.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/component/detailspanel.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/component/propertystatus.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/edittenantprofile.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/tenantapplication.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/TenantPOV/viewproperty.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/component/AgreementComponents/agreeement-term.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/component/AgreementComponents/agreement-dialog.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/component/AgreementComponents/agreement-signals.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/component/AgreementComponents/agreement-wrapper.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/component/AgreementComponents/card-wrapper.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/component/AgreementComponents/date-picker.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/component/AgreementComponents/form-error.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/component/AgreementComponents/form-success.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/component/AgreementComponents/landlord-agreement-form.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/component/AgreementComponents/property-card.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/component/AgreementComponents/tenant-agreement-form.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/component/CardGeneral.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/component/CardProperty.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/component/CardPropertyLandlord.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/button.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/calendar.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/card.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/dialog.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/form.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/input.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/label.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/popover.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/controllers/authControllers.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/index.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/index.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/lib/utils.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/reportWebVitals.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/schemas/index.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/setupTests.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/tailwind.config.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/tsconfig.json', LF will be replaced by CRLF the next time Git touches it
+[master (root-commit) 853876b] feat: implement property application workflow, lease management, and fix critical frontend bugs. Backend Changes: - Implemented full CRUD for Property Management. - Created Property Application module. - Implemented Lease Agreement Management. - Added Landlord Review system. - Configured photo uploads. - Updated server port to 5000. Frontend Changes: - Fixed 'data' and 'tenantId' undefined bugs. - Resolved crashes in LandlordApplicantFeedback. - Corrected API endpoints. - Synchronized JWT decoding. - Updated Home pages. - Improved UI stability.
+ 336 files changed, 39776 insertions(+)
+ create mode 100644 .DS_Store
+ create mode 100644 .idea/.gitignore
+ create mode 100644 .idea/compiler.xml
+ create mode 100644 .idea/encodings.xml
+ create mode 100644 .idea/jarRepositories.xml
+ create mode 100644 .idea/misc.xml
+ create mode 100644 .idea/modules.xml
+ create mode 100644 .idea/rentspotter_spring_backend-main.iml
+ create mode 100644 .idea/vcs.xml
+ create mode 100644 README
+ create mode 100644 backend/.gitignore
+ create mode 100644 backend/.mvn/wrapper/maven-wrapper.properties
+ create mode 100644 backend/README.md
+ create mode 100644 backend/mvnw
+ create mode 100644 backend/mvnw.cmd
+ create mode 100644 backend/pom.xml
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/Authentication/config/JwtUtil.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/Authentication/config/SecurityConfig.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/Authentication/config/WebConfig.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/Authentication/controller/UserController.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/Authentication/dto/RegisterRequest.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/Authentication/model/User.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/Authentication/repository/UserRepository.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/Authentication/service/UserService.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/LandlordPropertyManagement/controller/PropertyController.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/LandlordPropertyManagement/model/Property.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/LandlordPropertyManagement/repository/PropertyRepository.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/LandlordPropertyManagement/service/PropertyService.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/LandlordPropertyManagement/test.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/LandlordReviewManagement/controller/LandlordReviewController.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/LandlordReviewManagement/model/LandlordReview.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/LandlordReviewManagement/repository/LandlordReviewRepository.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/LandlordReviewManagement/service/LandlordReviewService.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/LeaseAgreementManagement/controller/LeaseAgreementController.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/LeaseAgreementManagement/model/LeaseAgreement.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/LeaseAgreementManagement/repository/LeaseAgreementRepository.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/LeaseAgreementManagement/service/LeaseAgreementService.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/LeaseAgreementManagement/test.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/PropertyApplication/controller/PropertyApplicationController.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/PropertyApplication/model/PropertyApplication.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/PropertyApplication/repository/PropertyApplicationRepository.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/PropertyApplication/service/PropertyApplicationService.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/RentSpotterApplication.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/RentalHistoryAnalytic/test.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/ReviewApplicantManagement/test.java
+ create mode 100644 backend/src/main/java/com/rentspotter/RentSpotter/TenantApplication/test.java
+ create mode 100644 backend/src/main/resources/application.properties
+ create mode 100644 backend/src/test/java/com/rentspotter/RentSpotter/RentSpotterApplicationTests.java
+ create mode 100644 client/.gitignore
+ create mode 100644 client/README.md
+ create mode 100644 client/components.json
+ create mode 100644 client/package-lock.json
+ create mode 100644 client/package.json
+ create mode 100644 client/public/Images/Edit_Property_TenantProfile.png
+ create mode 100644 client/public/Images/Edit_landlord_progile.png
+ create mode 100644 client/public/Images/authe_logo.png
+ create mode 100644 client/public/Images/bathroom.png
+ create mode 100644 client/public/Images/bathroomGrey.png
+ create mode 100644 client/public/Images/bedroom.png
+ create mode 100644 client/public/Images/bedroomGrey.png
+ create mode 100644 client/public/Images/bungalow.jpg
+ create mode 100644 client/public/Images/callingLandlord.png
+ create mode 100644 client/public/Images/checkEmail.gif
+ create mode 100644 client/public/Images/comment_landlord_profliePic.svg
+ create mode 100644 client/public/Images/content1.png
+ create mode 100644 client/public/Images/content2.png
+ create mode 100644 client/public/Images/content3.png
+ create mode 100644 client/public/Images/download.png
+ create mode 100644 client/public/Images/drop_down_arrow.png
+ create mode 100644 client/public/Images/email.png
+ create mode 100644 client/public/Images/fb.png
+ create mode 100644 client/public/Images/generalPageBackground.png
+ create mode 100644 client/public/Images/general_Profile.svg
+ create mode 100644 client/public/Images/landlord.png
+ create mode 100644 client/public/Images/landlordMain.webp
+ create mode 100644 client/public/Images/landlordProfile.png
+ create mode 100644 client/public/Images/landlord_Profile.svg
+ create mode 100644 client/public/Images/lock.png
+ create mode 100644 client/public/Images/logoText.png
+ create mode 100644 client/public/Images/photo_icon.svg
+ create mode 100644 client/public/Images/plus.png
+ create mode 100644 client/public/Images/profilepic.png
+ create mode 100644 client/public/Images/rating_star_default.svg
+ create mode 100644 client/public/Images/signIn_pic.svg
+ create mode 100644 client/public/Images/sqftGrey.png
+ create mode 100644 client/public/Images/sqrt.png
+ create mode 100644 client/public/Images/tenant.png
+ create mode 100644 client/public/Images/tenant_Profile.svg
+ create mode 100644 client/public/Images/tick.png
+ create mode 100644 client/public/favicon.ico
+ create mode 100644 client/public/index.html
+ create mode 100644 client/public/logo.ico
+ create mode 100644 client/public/logo192.png
+ create mode 100644 client/public/logo512.png
+ create mode 100644 client/public/manifest.json
+ create mode 100644 client/public/robots.txt
+ create mode 100644 client/src/App.css
+ create mode 100644 client/src/App.js
+ create mode 100644 client/src/App.test.js
+ create mode 100644 client/src/GeneralPage/Commercial.jsx
+ create mode 100644 client/src/GeneralPage/Condo.jsx
+ create mode 100644 client/src/GeneralPage/Footer.jsx
+ create mode 100644 client/src/GeneralPage/Home.jsx
+ create mode 100644 client/src/GeneralPage/Navbar.jsx
+ create mode 100644 client/src/GeneralPage/ViewProperty.jsx
+ create mode 100644 client/src/GeneralPage/footer.css
+ create mode 100644 client/src/GeneralPage/home.css
+ create mode 100644 client/src/GeneralPage/images/generalPageBackground.jpg
+ create mode 100644 client/src/GeneralPage/images/generalPageBackground.png
+ create mode 100644 client/src/GeneralPage/navbar.css
+ create mode 100644 client/src/Hooks/useLogin.jsx
+ create mode 100644 client/src/Hooks/useSignup.jsx
+ create mode 100644 client/src/LandlordPOV/Alert.css
+ create mode 100644 client/src/LandlordPOV/Alert.js
+ create mode 100644 client/src/LandlordPOV/ArrangePhoto.jsx
+ create mode 100644 client/src/LandlordPOV/CardComment.jsx
+ create mode 100644 client/src/LandlordPOV/EditLandlordProfile.jsx
+ create mode 100644 client/src/LandlordPOV/EditPhoto.jsx
+ create mode 100644 client/src/LandlordPOV/Images/ADDfile.png
+ create mode 100644 client/src/LandlordPOV/Images/commercial.svg
+ create mode 100644 client/src/LandlordPOV/Images/condo.svg
+ create mode 100644 client/src/LandlordPOV/Images/greyCircle.png
+ create mode 100644 client/src/LandlordPOV/Images/landed.svg
+ create mode 100644 client/src/LandlordPOV/Images/orangeCircle.png
+ create mode 100644 client/src/LandlordPOV/Images/room.svg
+ create mode 100644 client/src/LandlordPOV/Images/x.png
+ create mode 100644 client/src/LandlordPOV/LandlordApplicant.jsx
+ create mode 100644 client/src/LandlordPOV/LandlordApplicantFeedback.jsx
+ create mode 100644 client/src/LandlordPOV/LandlordComment.jsx
+ create mode 100644 client/src/LandlordPOV/LandlordHistory.jsx
+ create mode 100644 client/src/LandlordPOV/LandlordHome.jsx
+ create mode 100644 client/src/LandlordPOV/LandlordNavbar.jsx
+ create mode 100644 client/src/LandlordPOV/LandlordViewProperty.jsx
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/bathroom.png
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/bathroomIcon.png
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/bedroom.png
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/bedroomIcon.png
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/carparkIcon.png
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/comment copy.png
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/comment.png
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/commentProfilePic.png
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/comment_hover copy.png
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/comment_hover.png
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/contact.png
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/download copy.png
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/download copy.svg
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/download.png
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/download.svg
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/downloadPDF_icon copy.png
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/downloadPDF_icon.png
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/download_hover copy.png
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/download_hover.png
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/drop_down_arrow copy.png
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/drop_down_arrow.png
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/furnitureIcon.png
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/photo_icon.svg
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/propertyTypeIcon.png
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/rating_star_default copy.svg
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/rating_star_default.svg
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/rating_star_onClick copy.svg
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/rating_star_onClick.svg
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/sqft.png
+ create mode 100644 client/src/LandlordPOV/Rental_Icon/sqrtIcon.png
+ create mode 100644 client/src/LandlordPOV/UpdateProperty.jsx
+ create mode 100644 client/src/LandlordPOV/UploadProperty.jsx
+ create mode 100644 client/src/LandlordPOV/UploadPropertyPhoto.jsx
+ create mode 100644 client/src/LandlordPOV/arrangephoto.css
+ create mode 100644 client/src/LandlordPOV/cardComment.css
+ create mode 100644 client/src/LandlordPOV/component/AverageRating.jsx
+ create mode 100644 client/src/LandlordPOV/component/CommentBox.jsx
+ create mode 100644 client/src/LandlordPOV/component/DetailsPanel.jsx
+ create mode 100644 client/src/LandlordPOV/component/LandlordStarsGroup.jsx
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/bathroom.png
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/bathroomIcon.png
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/bedroom.png
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/bedroomIcon.png
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/carparkIcon.png
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/comment copy.png
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/comment.png
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/commentProfilePic.png
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/comment_hover copy.png
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/comment_hover.png
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/contact.png
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/download copy.png
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/download copy.svg
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/download.png
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/download.svg
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/downloadPDF_icon copy.png
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/downloadPDF_icon.png
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/download_hover copy.png
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/download_hover.png
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/drop_down_arrow copy.png
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/drop_down_arrow.png
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/furnitureIcon.png
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/photo_icon.svg
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/propertyTypeIcon.png
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/rating_star_default copy.svg
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/rating_star_default.svg
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/rating_star_onClick copy.svg
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/rating_star_onClick.svg
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/sqft.png
+ create mode 100644 client/src/LandlordPOV/component/Rental_Icon/sqrtIcon.png
+ create mode 100644 client/src/LandlordPOV/component/averagerating.css
+ create mode 100644 client/src/LandlordPOV/component/commentbox.css
+ create mode 100644 client/src/LandlordPOV/component/detailspanel.css
+ create mode 100644 client/src/LandlordPOV/components/ui/3d-card.tsx
+ create mode 100644 client/src/LandlordPOV/components/ui/flip-words.tsx
+ create mode 100644 client/src/LandlordPOV/components/ui/utils/cn.ts
+ create mode 100644 client/src/LandlordPOV/components/ui/utils/tailwind.config.ts
+ create mode 100644 client/src/LandlordPOV/editlandlordprofile.css
+ create mode 100644 client/src/LandlordPOV/editphoto.css
+ create mode 100644 client/src/LandlordPOV/landlordApplicantFeedback.css
+ create mode 100644 client/src/LandlordPOV/landlord_history.css
+ create mode 100644 client/src/LandlordPOV/landlordapplicant.css
+ create mode 100644 client/src/LandlordPOV/landlordhome.css
+ create mode 100644 client/src/LandlordPOV/landlordviewproperty.css
+ create mode 100644 client/src/LandlordPOV/updateproperty.css
+ create mode 100644 client/src/LandlordPOV/uploadpropertyphoto.css
+ create mode 100644 client/src/LeaseAgreement/AgreementFull.tsx
+ create mode 100644 client/src/LeaseAgreement/AgreementFullView.tsx
+ create mode 100644 client/src/LeaseAgreement/AgreementText.tsx
+ create mode 100644 client/src/LeaseAgreement/landlord/LandlordAgreementFormPage.tsx
+ create mode 100644 client/src/LeaseAgreement/landlord/LandlordAgreementPage1.tsx
+ create mode 100644 client/src/LeaseAgreement/landlord/LandlordAgreementPage2.tsx
+ create mode 100644 client/src/LeaseAgreement/landlord/LandlordAgreementPage3.tsx
+ create mode 100644 client/src/LeaseAgreement/tenant/TenantAgreementFormPage.tsx
+ create mode 100644 client/src/LeaseAgreement/tenant/TenantAgreementHome.tsx
+ create mode 100644 client/src/LeaseAgreement/tenant/TenantAgreementLastPage.tsx
+ create mode 100644 client/src/LeaseAgreement/tenant/TenantAgreementPage1.tsx
+ create mode 100644 client/src/LeaseAgreement/tenant/TenantAgreementPage2.tsx
+ create mode 100644 client/src/LeaseAgreement/tenant/TenantAgreementPage3.tsx
+ create mode 100644 client/src/LogIn/ForgotPassword.jsx
+ create mode 100644 client/src/LogIn/LogIn.jsx
+ create mode 100644 client/src/LogIn/ResetPassword.jsx
+ create mode 100644 client/src/LogIn/forgotpassword.css
+ create mode 100644 client/src/LogIn/login.css
+ create mode 100644 client/src/RegisterAcc/RegisterLandlordAcc.jsx
+ create mode 100644 client/src/RegisterAcc/RegisterTenantAcc.jsx
+ create mode 100644 client/src/RegisterAcc/SignIn.jsx
+ create mode 100644 client/src/RegisterAcc/registeracc.css
+ create mode 100644 client/src/RegisterAcc/signin.css
+ create mode 100644 client/src/ShowNavFooter/ShowNavbar.jsx
+ create mode 100644 client/src/ShowNavbarFooter/ShowFooter.jsx
+ create mode 100644 client/src/ShowNavbarFooter/ShowNavbar.jsx
+ create mode 100644 client/src/TenantPOV/EditTenantProfile.jsx
+ create mode 100644 client/src/TenantPOV/RentTenant.jsx
+ create mode 100644 client/src/TenantPOV/TenantApplication.jsx
+ create mode 100644 client/src/TenantPOV/TenantApplyForm.jsx
+ create mode 100644 client/src/TenantPOV/TenantComment.jsx
+ create mode 100644 client/src/TenantPOV/TenantHome.jsx
+ create mode 100644 client/src/TenantPOV/TenantNavbar.jsx
+ create mode 100644 client/src/TenantPOV/TenantViewProperty.jsx
+ create mode 100644 client/src/TenantPOV/ViewPropertyActive.jsx
+ create mode 100644 client/src/TenantPOV/ViewPropertyLease.jsx
+ create mode 100644 client/src/TenantPOV/ViewPropertyPending.jsx
+ create mode 100644 client/src/TenantPOV/ViewPropertyRejected.jsx
+ create mode 100644 client/src/TenantPOV/component/AverageRating.jsx
+ create mode 100644 client/src/TenantPOV/component/CardApplication.jsx
+ create mode 100644 client/src/TenantPOV/component/CardRent.jsx
+ create mode 100644 client/src/TenantPOV/component/CommentBox.jsx
+ create mode 100644 client/src/TenantPOV/component/CommentSection.jsx
+ create mode 100644 client/src/TenantPOV/component/DetailsPanel.jsx
+ create mode 100644 client/src/TenantPOV/component/PropertyStatus.jsx
+ create mode 100644 client/src/TenantPOV/component/Rental_Icon/bathroom.png
+ create mode 100644 client/src/TenantPOV/component/Rental_Icon/bathroomIcon.png
+ create mode 100644 client/src/TenantPOV/component/Rental_Icon/bedroom.png
+ create mode 100644 client/src/TenantPOV/component/Rental_Icon/bedroomIcon.png
+ create mode 100644 client/src/TenantPOV/component/Rental_Icon/carparkIcon.png
+ create mode 100644 client/src/TenantPOV/component/Rental_Icon/comment.png
+ create mode 100644 client/src/TenantPOV/component/Rental_Icon/commentProfilePic.png
+ create mode 100644 client/src/TenantPOV/component/Rental_Icon/comment_hover.png
+ create mode 100644 client/src/TenantPOV/component/Rental_Icon/download.png
+ create mode 100644 client/src/TenantPOV/component/Rental_Icon/download.svg
+ create mode 100644 client/src/TenantPOV/component/Rental_Icon/downloadPDF_icon.png
+ create mode 100644 client/src/TenantPOV/component/Rental_Icon/download_hover.png
+ create mode 100644 client/src/TenantPOV/component/Rental_Icon/drop_down_arrow.png
+ create mode 100644 client/src/TenantPOV/component/Rental_Icon/furnitureIcon.png
+ create mode 100644 client/src/TenantPOV/component/Rental_Icon/photo_icon.svg
+ create mode 100644 client/src/TenantPOV/component/Rental_Icon/propertyTypeIcon.png
+ create mode 100644 client/src/TenantPOV/component/Rental_Icon/rating_star_default.svg
+ create mode 100644 client/src/TenantPOV/component/Rental_Icon/rating_star_onClick.svg
+ create mode 100644 client/src/TenantPOV/component/Rental_Icon/sqft.png
+ create mode 100644 client/src/TenantPOV/component/Rental_Icon/sqrtIcon.png
+ create mode 100644 client/src/TenantPOV/component/StarsGroup.jsx
+ create mode 100644 client/src/TenantPOV/component/averagerating.css
+ create mode 100644 client/src/TenantPOV/component/cardApplication.css
+ create mode 100644 client/src/TenantPOV/component/cardHistory.css
+ create mode 100644 client/src/TenantPOV/component/commentbox.css
+ create mode 100644 client/src/TenantPOV/component/detailspanel.css
+ create mode 100644 client/src/TenantPOV/component/propertystatus.css
+ create mode 100644 client/src/TenantPOV/edittenantprofile.css
+ create mode 100644 client/src/TenantPOV/tenantapplication.css
+ create mode 100644 client/src/TenantPOV/viewproperty.css
+ create mode 100644 client/src/component/AgreementComponents/agreeement-term.tsx
+ create mode 100644 client/src/component/AgreementComponents/agreement-dialog.tsx
+ create mode 100644 client/src/component/AgreementComponents/agreement-signals.ts
+ create mode 100644 client/src/component/AgreementComponents/agreement-wrapper.tsx
+ create mode 100644 client/src/component/AgreementComponents/bathroom.png
+ create mode 100644 client/src/component/AgreementComponents/bedroom.png
+ create mode 100644 client/src/component/AgreementComponents/card-wrapper.tsx
+ create mode 100644 client/src/component/AgreementComponents/date-picker.tsx
+ create mode 100644 client/src/component/AgreementComponents/form-error.tsx
+ create mode 100644 client/src/component/AgreementComponents/form-success.tsx
+ create mode 100644 client/src/component/AgreementComponents/landlord-agreement-form.tsx
+ create mode 100644 client/src/component/AgreementComponents/property-card.tsx
+ create mode 100644 client/src/component/AgreementComponents/sqft.png
+ create mode 100644 client/src/component/AgreementComponents/tenant-agreement-form.tsx
+ create mode 100644 client/src/component/CardGeneral.jsx
+ create mode 100644 client/src/component/CardProperty.jsx
+ create mode 100644 client/src/component/CardPropertyLandlord.jsx
+ create mode 100644 client/src/components/ui/button.tsx
+ create mode 100644 client/src/components/ui/calendar.tsx
+ create mode 100644 client/src/components/ui/card.tsx
+ create mode 100644 client/src/components/ui/dialog.tsx
+ create mode 100644 client/src/components/ui/form.tsx
+ create mode 100644 client/src/components/ui/input.tsx
+ create mode 100644 client/src/components/ui/label.tsx
+ create mode 100644 client/src/components/ui/popover.tsx
+ create mode 100644 client/src/controllers/authControllers.js
+ create mode 100644 client/src/index.css
+ create mode 100644 client/src/index.js
+ create mode 100644 client/src/lib/utils.ts
+ create mode 100644 client/src/logo.svg
+ create mode 100644 client/src/reportWebVitals.js
+ create mode 100644 client/src/schemas/index.ts
+ create mode 100644 client/src/setupTests.js
+ create mode 100644 client/tailwind.config.js
+ create mode 100644 client/tsconfig.json
+ create mode 100644 uploads/21121315-9bbd-4233-a118-42210dd97cc4_file_00000000f63c72078e740bf46a45c6a9_1.jpg
+ create mode 100644 uploads/36e4ecf7-156b-4f00-a6b5-9ea13760994b_arkham_knight.jpg
+ create mode 100644 uploads/471c8853-3761-4e18-8ba4-f317de0bed83_545967611.jpg
+ create mode 100644 uploads/990ac4d7-5706-41aa-8606-0c58ef7b7462_arkham_knight.jpg
+ create mode 100644 uploads/aa29f763-e4e3-49cc-bc12-51b2458d043c_Fundus_-_diabetic_retinopathy.png
+ create mode 100644 uploads/aed6a361-72c2-4d35-addf-6a9f7b849ca9_Screenshot 2026-01-07 230420.png
+ create mode 100644 uploads/bd18a9c4-7576-4020-8c88-ad4e880f28b3_-Clear-stock-One-Residence-1250sqft-3room-near-KLCC-TRX-KL-City-Centre-Malaysia.jpg
+ create mode 100644 uploads/e63214f4-9097-46d5-b241-b7f164d8ebf5_signature.png
+Switched to a new branch 'rentspotter_muhammad'
+Enumerating objects: 343, done.
+Counting objects: 100% (343/343), done.
+Delta compression using up to 6 threads
+Compressing objects: 100% (288/288), done.
+Writing objects: 100% (343/343), 19.11 MiB | 9.58 MiB/s, done.
+Total 343 (delta 44), reused 234 (delta 28), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (44/44), done.
+remote:
+remote: Create a pull request for 'rentspotter_muhammad' on GitHub by visiting:
+remote:      https://github.com/SJWONG27/rentspotter_spring_backend/pull/new/rentspotter_muhammad
+remote:
+To https://github.com/SJWONG27/rentspotter_spring_backend.git
+ * [new branch]      rentspotter_muhammad -> rentspotter_muhammad

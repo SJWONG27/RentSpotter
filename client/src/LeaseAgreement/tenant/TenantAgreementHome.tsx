@@ -16,6 +16,7 @@ interface IToken {
 
 
 interface ILeaseAgreement {
+ id: string;
  _id: string;
  tenantId: string;
  landlordId: string;
@@ -134,11 +135,11 @@ const TenantAgreementHome = () => {
      try {
        const promises = leaseAgreementList.map(async (leaseAgreement) => {
          const response = await axios.get(
-           `/api/applications/ViewProperty/${leaseAgreement.propertyId}`
+           `/api/landlord/properties/${leaseAgreement.propertyId}`
          );
          const property: IProperty = response.data;
          const landlordName = await axios.get(
-           `/api/users/${response.data.landlordId}`
+           `/api/users/${property.landlordId}`
          );
          console.log(
            "Property fetched for application:",
@@ -154,7 +155,7 @@ const TenantAgreementHome = () => {
          return {
            property: response.data,
            leaseAgreement,
-           locationOwner: landlordName.data.data.username,
+           locationOwner: landlordName.data.username,
          };
        });
        const activePropertyList: ICombination[] = [];
@@ -213,7 +214,7 @@ const TenantAgreementHome = () => {
                {activePropertyListingInfo.map((info, index) => (
                  <PropertyCard
                    key={index}
-                   leaseAgreementId={info.leaseAgreement._id}
+                   leaseAgreementId={info.leaseAgreement.id || info.leaseAgreement._id}
                    imageUrl={`http://localhost:5000/uploads/${info.property.coverPhoto}`}
                    title={info.property.name}
                    // `${property.location} | ${property.type} rented out by ${property.landlordUsername}`,
@@ -233,7 +234,7 @@ const TenantAgreementHome = () => {
                {expiredPropertyListingInfo.map((info, index) => (
                  <PropertyCard
                    key={index}
-                   leaseAgreementId={info.leaseAgreement._id}
+                   leaseAgreementId={info.leaseAgreement.id || info.leaseAgreement._id}
                    imageUrl={`http://localhost:5000/uploads/${info.property.coverPhoto}`}
                    title={info.property.name}
                    // `${property.location} | ${property.type} rented out by ${property.landlordUsername}`,

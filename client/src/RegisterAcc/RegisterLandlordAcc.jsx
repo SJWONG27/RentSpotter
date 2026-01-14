@@ -69,9 +69,9 @@ const RegisterLandlordAcc = ({role}) => {
             
             try {
                 // const response = await axios.post('/api/auth/registerLandlordAcc', formData);
-                const response = await register(formData);
+                const responseData = await register(formData);
                 // Handle successful registration
-                console.log(response.data); // Log response from the server
+                console.log(responseData); // Log response from the server
                 
                 // No validation errors, show success message
                 // Show the SweetAlert
@@ -101,14 +101,17 @@ const RegisterLandlordAcc = ({role}) => {
                     });
                 });
             } catch (error) {
-                console.log("Validation errors exist, not showing alert.");
+                console.log("Error during registration:", error);
                 // Handle registration error
                 console.error(error); // Log error message
-                console.error("Registration Error:", error.response.data);
+                
+                const errorMessage = error.response?.data?.message || "An unknown error occurred";
+                console.error("Registration Error:", errorMessage);
+                
                 // Handle showing the error message from the backend
                 Swal.fire({
                     title: "Error!",
-                    text: error.response?.data?.message || "An unknown error occurred",
+                    text: errorMessage,
                     icon: "error",
                     confirmButtonText: "OK",
                     confirmButtonColor: "#FF8C22",

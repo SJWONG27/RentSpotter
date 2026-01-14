@@ -42,11 +42,11 @@ function LandlordApplicant() {
     const token = localStorage.getItem('token');
     if (token) {
       const decodedToken = jwtDecode(token);
-      const userId = decodedToken.userId;
+      const userId = decodedToken.userId || decodedToken.sub;
 
       async function fetchProperties() {
         try {
-          const response = await axios.get(`/api/properties/user/${userId}`, {
+          const response = await axios.get(`/api/landlord/properties/user/${userId}`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           setProperties(response.data);
@@ -61,22 +61,34 @@ function LandlordApplicant() {
 
   useEffect(() => {
     async function fetchApplicationsAndLeases() {
-      if (selectedProperty && selectedProperty._id) {
+      const propertyId = selectedProperty?.id || selectedProperty?._id;
+      if (propertyId) {
         setLoading(true);
         try {
           const token = localStorage.getItem('token');
-          const response = await axios.get(`/api/applications/property-details/${selectedProperty._id}`, {
+          const response = await axios.get(`/api/applications/property/${propertyId}`, {
             headers: { Authorization: `Bearer ${token}` }
           });
 
-          const applicationDetails = response.data;
-          console.log("Fetched application details:", applicationDetails); 
+          const applications = response.data;
+          console.log("Fetched applications:", applications); 
 
-          const filteredApplications = applicationDetails.filter(
-            application => application.applicationStatus !== "Rejected"
+          const promises = applications.map(async (app) => {
+            const userResponse = await axios.get(`/api/users/${app.tenantId}`);
+            return {
+              ...app,
+              tenantUsername: userResponse.data.username,
+              tenantOverallRating: userResponse.data.overallRating || 0
+            };
+          });
+
+          const enrichedApplications = await Promise.all(promises);
+
+          const filteredApplications = enrichedApplications.filter(
+            application => application.status !== "Rejected" && application.status !== "REJECTED"
           );
 
-          console.log("Fetched application details:", filteredApplications); 
+          console.log("Enriched application details:", filteredApplications); 
           setLeases(filteredApplications || []);
         } catch (err) {
           console.error("Error fetching applications and leases:", err);
@@ -90,8 +102,8 @@ function LandlordApplicant() {
   }, [selectedProperty]);
 
   const handlePropertyChange = (propertyId) => {
-    const selected = properties.find(property => property._id === propertyId);
-    if (selected && (!selectedProperty || selected._id !== selectedProperty._id)) {
+    const selected = properties.find(property => (property.id || property._id) === propertyId);
+    if (selected && (!selectedProperty || (selected.id || selected._id) !== (selectedProperty.id || selectedProperty._id))) {
       setSelectedProperty(selected);
       setLeases([]);
     } else {
@@ -100,17 +112,14 @@ function LandlordApplicant() {
   };
 
   const handleViewApplicantFeedback = (lease) => {
-    const application = leases.find(app => app.tenantId._id === lease.tenantId._id);
-    if (application) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      nav("/landlordApplicantFeedback", {
-        state: { 
-          username: lease.tenantUsername, 
-          leaseId: lease.leaseId,
-          applicationId: application._id 
-        }
-      });
-    }
+    const leaseId = lease.id || lease._id;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    nav("/landlordApplicantFeedback", {
+      state: { 
+        username: lease.tenantUsername, 
+        applicationId: leaseId 
+      }
+    });
   };
 
   const handleDownloadSigned = async (event, leaseId) => {
@@ -161,10 +170,10 @@ function LandlordApplicant() {
       </thead>
       <tbody>
         {data.map((lease, index) => (
-          <tr key={lease.id} onClick={() => handleViewApplicantFeedback(lease)}>
+          <tr key={lease.id || lease._id} onClick={() => handleViewApplicantFeedback(lease)}>
             <td>{lease.tenantUsername}</td>
             <td>{renderRatingOrCommentText(lease)}</td>
-            <td>{renderStatus(lease.leaseStatus, lease.leaseId)}</td>
+            <td>{renderStatus(lease.status, lease.id || lease._id)}</td>
           </tr>
         ))}
       </tbody>
@@ -208,12 +217,12 @@ function LandlordApplicant() {
     );
   };
 
-  const renderStatus = (status, leaseId) => {
+  const renderStatus = (status, id) => {
     if (status === "Signed") {
       return (
         <div
           className="signedStatusData"
-          onClick={(event) => handleDownloadSigned(event, leaseId)}
+          onClick={(event) => handleDownloadSigned(event, id)}
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
         >
@@ -227,6 +236,8 @@ function LandlordApplicant() {
           />
         </div>
       );
+    } else if (status === "Approved") {
+      return <span className="tenantReviewing">Approved</span>;
     } else if (status === "Under Review By Tenant") {
       return <span className="tenantReviewing">{status}</span>;
     } else {
@@ -289,18 +300,21 @@ function LandlordApplicant() {
             </div>
             {isOpen && (
               <div className="custom-options">
-                {properties.map(property => (
-                  <div
-                    key={property._id}
-                    className={`custom-option ${selectedProperty && selectedProperty._id === property._id ? "selected" : ""}`}
-                    onClick={() => {
-                      handlePropertyChange(property._id);
-                      setIsOpen(false);
-                    }}
-                  >
-                    {property.name}
-                  </div>
-                ))}
+                {properties.map(property => {
+                  const propId = property.id || property._id;
+                  return (
+                    <div
+                      key={propId}
+                      className={`custom-option ${selectedProperty && (selectedProperty.id || selectedProperty._id) === propId ? "selected" : ""}`}
+                      onClick={() => {
+                        handlePropertyChange(propId);
+                        setIsOpen(false);
+                      }}
+                    >
+                      {property.name}
+                    </div>
+                  );
+                })}
               </div>
             )}
           </div>

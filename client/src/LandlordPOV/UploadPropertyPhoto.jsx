@@ -10,6 +10,16 @@ const UploadPropertyPhoto = () => {
   const navigate = useNavigate();
   const { propertyId } = useParams();
 
+  if (propertyId === "undefined" || !propertyId) {
+    console.error("Property ID is undefined in UploadPropertyPhoto");
+    return (
+      <div className="pageMainContainer">
+        <h1 className="pageMainTitle">Error</h1>
+        <p>Invalid Property ID. Please go back and try again.</p>
+      </div>
+    );
+  }
+
   const handleImageClick = () => {
     fileInputRef.current.click(); // Trigger file input click
   };

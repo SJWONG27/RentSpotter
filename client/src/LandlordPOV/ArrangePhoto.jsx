@@ -17,7 +17,10 @@ const ArrangePhoto = () => {
 
     const getPropertyPhotos = useCallback(async () => {
         try {
-            const response = await axios.get(`/api/landlord/properties/uploadPhoto/getPhoto/${propertyId}`);
+            const token = localStorage.getItem('token');
+            const response = await axios.get(`/api/landlord/properties/uploadPhoto/getPhoto/${propertyId}`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
             const { coverPhoto, photos } = response.data;
             console.log('Response data:', response.data);
             setCoverPhoto(coverPhoto);
@@ -34,7 +37,10 @@ const ArrangePhoto = () => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`/api/landlord/properties/${propertyId}/deletePhoto/${id}`);
+            const token = localStorage.getItem('token');
+            await axios.delete(`/api/landlord/properties/${propertyId}/deletePhoto/${id}`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
             setPhotoItems(prevItems => prevItems.filter(item => item !== id));
         } catch (error) {
             console.error("Error deleting photo:", error);
@@ -43,7 +49,10 @@ const ArrangePhoto = () => {
 
     const handleMakeCover = async (id) => {
         try {
-            await axios.put(`/api/landlord/properties/makeCoverPhoto/${propertyId}/${id}`);
+            const token = localStorage.getItem('token');
+            await axios.put(`/api/landlord/properties/makeCoverPhoto/${propertyId}/${id}`, {}, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
             getPropertyPhotos();
         } catch (error) {
             console.error("Error making cover photo:", error);
@@ -58,11 +67,13 @@ const ArrangePhoto = () => {
         const file = e.target.files[0];
         if (file && (file.type === 'image/jpeg' || file.type === 'image/png')) {
             try {
+                const token = localStorage.getItem('token');
                 const formData = new FormData();
                 formData.append("photo", file);
                 await axios.put(`/api/landlord/properties/uploadPhotoNext/${propertyId}`, formData, {
                     headers: {
                         "Content-Type": "multipart/form-data",
+                        'Authorization': `Bearer ${token}`
                     },
                 });
                 getPropertyPhotos();

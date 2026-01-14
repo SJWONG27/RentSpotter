@@ -23,7 +23,8 @@ const LandlordApplicantFeedback = () => {
 
   const fetchTenantIdByUsername = async (username) => {
     try {
-        const response = await axios.get(`/api/username/${username}/tenantId`);
+        const response = await axios.get(`/api/users/tenant/${username}`);
+        console.log("fetchTenantIdByUsername response:", response.data);
         return response.data.tenantId;
     } catch (error) {
         console.error("Error fetching tenantId:", error);
@@ -40,16 +41,19 @@ const LandlordApplicantFeedback = () => {
             }
 
             const tenantId = await fetchTenantIdByUsername(username);
+            console.log("Using tenantId for fetchLandlordRatingAndComments:", tenantId);
 
-            const landlordResponse = await axios.get(`/api/landlord/tenant/${tenantId}`, {
+            const landlordResponse = await axios.get(`/api/users/${tenantId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
+            console.log("Tenant profile response:", landlordResponse.data);
             setOverallRating(landlordResponse.data.overallRating);
             setPhoneNumber(landlordResponse.data.phonenumber);
 
-            const commentResponse = await axios.get(`/api/landlord/tenantReview/${tenantId}`, {
+            const commentResponse = await axios.get(`/api/landlordReview/${tenantId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
+            console.log("Comment list for tenant:", commentResponse.data);
             setCommentList(commentResponse.data);
         } catch (err) {
             console.error("Error fetching landlord rating and comments:", err);
@@ -101,7 +105,7 @@ const LandlordApplicantFeedback = () => {
           return;
         }
         const promises = commentList.map(async (comment) => {
-          const response = await axios.get(`/api/landlord/landlordProperties/${comment.landlordId}`);
+          const response = await axios.get(`/api/users/${comment.landlordId}`);
           return { usernameComment: response.data.username };
         });
 
@@ -127,29 +131,40 @@ const LandlordApplicantFeedback = () => {
 
   const handleRejectApplicant = async () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    const response = await axios.post(
-      `/api/leaseAgreement/rejectApplication/${applicationId}`
-    );
-    setTimeout(() => {
+    try {
+      const token = localStorage.getItem('token');
+      await axios.put(
+        `/api/applications/${applicationId}/status`,
+        { status: "Rejected" },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
       Swal.fire({
-        text: "Reject Successfully",
+        text: "Rejected Successfully",
         icon: "success",
         confirmButtonColor: "#FF8C22",
         confirmButtonText: "OK",
         customClass: {
           confirmButton: 'my-confirm-button-class-success'
-      }
+        }
       }).then((result) => {
         if (result.isConfirmed) {
           window.scrollTo({ top: 0, behavior: "smooth" });
           nav(`/landlordApplicant`);
         }
       });
-    }, 100); // Delay to ensure the scroll completes before showing the dialog
+    } catch (error) {
+      console.error("Error rejecting application:", error);
+      Swal.fire({
+        text: "Failed to reject application.",
+        icon: "error",
+        confirmButtonColor: "#FF8C22",
+      });
+    }
   };
 
 
   const formatPhoneNumber = (phone) => {
+    if (!phone) return "";
     return phone.startsWith("6") ? phone : `6${phone}`;
   };
 
@@ -189,13 +204,17 @@ const LandlordApplicantFeedback = () => {
                 <p className="contactText">
                   Contact me{" "}
                   <span className="contactLink">
-                    <a
-                      href={`https://wa.me/${formatPhoneNumber(phoneNumber)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      HERE
-                    </a>
+                    {phoneNumber ? (
+                      <a
+                        href={`https://wa.me/${formatPhoneNumber(phoneNumber)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        HERE
+                      </a>
+                    ) : (
+                      "N/A"
+                    )}
                   </span>
                 </p>
               </div>
@@ -232,8 +251,8 @@ const LandlordApplicantFeedback = () => {
                     key={index}
                     username={userNameList[index]?.usernameComment || "Anonymous"}
                     date={format(new Date(comment.commentDate), 'dd MMMM yyyy')}
-                    comment={comment.commentTenant}
-                    rating={comment.tenantRating}
+                    comment={comment.commentLandlord}
+                    rating={comment.landlordRating}
                   />
                 ))
               ) : (

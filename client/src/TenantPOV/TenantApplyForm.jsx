@@ -4,6 +4,7 @@ import "../TenantPOV/edittenantprofile.css";
 import "../LandlordPOV/landlord_history.css";
 import Swal from "sweetalert2";
 import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 
 const TenantApplyForm = () => {
     const nav = useNavigate();
@@ -23,12 +24,13 @@ const TenantApplyForm = () => {
     useEffect(() => {
       const fetchUserData = async () => {
         const token = localStorage.getItem('token');  
+        if (!token) return;
         try {
-          const response = await axios.get(`/api/applications/tenantApplyForm/${userId}`, {
+          const response = await axios.get(`/api/users/profile`, {
             headers: { Authorization: `Bearer ${token}` }
           });
 
-          const { username, email, phonenumber, fullname, ic } = response.data;
+          const { username, email, phonenumber, fullname, ic } = response.data.data;
           setUserData({
               editUsername: username,
               editEmail: email,
@@ -50,7 +52,7 @@ const TenantApplyForm = () => {
         }
       }
       fetchUserData();
-    }, [userId]);
+    }, []);
 
     const handleCheckboxChange = () => {
       setClicked(!clicked); 
@@ -96,9 +98,21 @@ const TenantApplyForm = () => {
 
       if (Object.keys(validationErrors).length === 0) {
         const token = localStorage.getItem('token');
+        let currentUserId = userId;
+
+        if ((!currentUserId || currentUserId === "undefined") && token) {
+          try {
+            const decoded = jwtDecode(token);
+            currentUserId = decoded.userId || decoded.sub;
+            console.log("Extracted currentUserId from token:", currentUserId);
+          } catch (err) {
+            console.error("Error decoding token in handleSaveAndSubmit:", err);
+          }
+        }
+
         try {
           // Check if the application already exists
-          const checkResponse = await axios.get(`/api/applications/tenantApplyForm/${userId}/${propertyId}`, {
+          const checkResponse = await axios.get(`/api/applications/check?tenantId=${currentUserId}&propertyId=${propertyId}`, {
             headers: { 'Authorization': `Bearer ${token}` }
           });
     
@@ -117,14 +131,9 @@ const TenantApplyForm = () => {
             });
             return;
           } else {
-            // Update profile
-            await axios.put('/api/auth/landlordProfileEdit', userData, {
-              headers: { 'Authorization': `Bearer ${token}` }
-            });
-    
             // Create application
-            await axios.post(`/api/applications/tenantApplyForm`, {
-              userId: userId,
+            await axios.post(`/api/applications/apply`, {
+              tenantId: currentUserId,
               propertyId: propertyId,
               landlordId: landlordId
             }, {

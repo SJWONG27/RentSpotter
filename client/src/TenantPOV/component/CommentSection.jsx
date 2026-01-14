@@ -15,12 +15,12 @@ const CommentSection = ({ landlordId }) => {
     useEffect(() => {
         const fetchLandlordOverallRating = async () => {
             try {
-                const landlordResponse = await axios.get(`/api/applications/landlord/${landlordId}`);
-                if (landlordResponse.data.overallRating) {
-                    setOverallRating(landlordResponse.data.overallRating);
+                const landlordResponse = await axios.get(`/api/users/${landlordId}`);
+                if (landlordResponse.data.overallRating || landlordResponse.data.status === "success") {
+                    setOverallRating(landlordResponse.data.overallRating || 0);
                     console.log('Overall rating: ', overallRating)
                     try {
-                        const commentResponse = await axios.get(`/api/applications/landlordReview/${landlordId}`);
+                        const commentResponse = await axios.get(`/api/landlordReview/${landlordId}`);
                         setCommentList(commentResponse.data);
                     } catch (error) {
                         console.error('Error fetching comment data:', error);
@@ -51,7 +51,7 @@ const CommentSection = ({ landlordId }) => {
         async function fetchUsername() {
             try {
                 const promises = commentList.map(async (comment) => {
-                    const response = await axios.get(`/api/applications/landlord/${comment.tenantId}`);
+                    const response = await axios.get(`/api/users/${comment.tenantId}`);
                     return { username: response.data.username };
                 });
                 const usernameData = await Promise.all(promises);

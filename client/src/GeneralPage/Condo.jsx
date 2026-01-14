@@ -25,7 +25,7 @@ const Condo = () => {
   useEffect(() => {
     const fetchProperties = async () => {
       try {
-        const response = await axios.get('/api/applications/home/condo'); 
+        const response = await axios.get('/api/landlord/properties/type/Condo'); 
         if (Array.isArray(response.data)) {
           setPropertyList(response.data);
         } else {
@@ -46,7 +46,7 @@ const Condo = () => {
     }
 
     const mappedCardData = propertyList.map(property => ({
-      propertyId: property._id,
+      propertyId: property.id || property._id,
       imgSrc: `http://localhost:5000/uploads/${property.coverPhoto}`,
       cardTitle1: `RM ${property.price} Per Month`,
       cardTitle2: property.name,
