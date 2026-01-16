@@ -1,0 +1,170 @@
+package com.rentspotter.RentSpotter.LeaseAgreementManagement.controller;
+
+import com.rentspotter.RentSpotter.LeaseAgreementManagement.model.LeaseAgreementModel;
+import com.rentspotter.RentSpotter.LeaseAgreementManagement.model.LeaseAgreementStatus;
+import com.rentspotter.RentSpotter.LeaseAgreementManagement.repository.LeaseAgreementRepository;
+import com.rentspotter.RentSpotter.LeaseAgreementManagement.service.EmailService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/api/lease")
+public class LeaseAgreementController {
+    @Autowired
+    private LeaseAgreementRepository leaseAgreementRepository;
+
+    @Autowired
+    private EmailService emailService;
+
+
+    // Landlord
+    // UC-12 Renew Existing Landlord LeaseAgreementModel Agreement
+    @PutMapping("update-lease/{applicationId}")
+    public ResponseEntity<?> updateLeaseAgreement(@PathVariable String applicationId, @RequestBody LeaseAgreementModel leaseData){
+        Optional<LeaseAgreementModel> existingLease = leaseAgreementRepository.findByApplicationId(applicationId);
+
+        Map<String, Object> response = new HashMap<>();
+        if(existingLease.isEmpty()){
+            response.put("status", "error");
+            response.put("message", "lease is not exist");
+            return ResponseEntity.ok(response);
+        }
+
+        LeaseAgreementModel lease = existingLease.get();
+        updateLeaseFields(lease, leaseData);
+        lease.setLeaseStatus(LeaseAgreementStatus.UNDER_REVIEW_BY_TENANT);
+
+        LeaseAgreementModel savedLease = leaseAgreementRepository.save(lease);
+        response.put("status", "success");
+        response.put("message", "lease updated");
+        response.put("leaseId", savedLease.getId());
+
+        return ResponseEntity.ok(response);
+    }
+
+    // UC-13 View Lease Agreement Status
+    @GetMapping("/status/{leaseId}")
+    public ResponseEntity<?> getLeaseStatus(@PathVariable String leaseId){
+        return leaseAgreementRepository.findById(leaseId).map(lease->{
+                    Map<String, Object> response = new HashMap<>();
+                    response.put("status", "success");
+                    response.put("leaseId", lease.getId());
+                    response.put("leaseStatus", lease.getLeaseStatus());
+
+                    return ResponseEntity.ok(response);
+                })
+                .orElseGet(() -> {
+                    Map<String, Object> error = new HashMap<>();
+                    error.put("status", "error");
+                    error.put("message", "getLeaseStatus not found");
+                    return ResponseEntity.status(404).body(error);
+                });
+    }
+
+    // UC-14 Submit Landlord LeaseAgreementModel Agreement (Create or Update)
+    @PostMapping("/submit-landlord/{applicationId}")
+    public ResponseEntity<?> submitLandlordLease(@PathVariable String applicationId, @RequestBody LeaseAgreementModel leaseData) {
+        Optional<LeaseAgreementModel> existingLease = leaseAgreementRepository.findByApplicationId(applicationId);
+
+        Map<String, Object> response = new HashMap<>();
+        if (existingLease.isPresent()) {
+            response.put("status", "error");
+            response.put("message", "lease existed");
+            return ResponseEntity.ok(response);
+        }
+
+        LeaseAgreementModel lease = leaseData;
+        lease.setApplicationId(applicationId);
+        lease.setLeaseStatus(LeaseAgreementStatus.UNDER_REVIEW_BY_TENANT);
+
+        LeaseAgreementModel savedLease = leaseAgreementRepository.save(lease);
+        response.put("status", "success");
+        response.put("leaseAgreementId", savedLease.getId());
+        return ResponseEntity.ok(response);
+    }
+
+
+    @PutMapping("/save-pdf/{leaseId}")
+    public ResponseEntity<?> savePdf(@PathVariable String leaseId, @RequestBody Map<String, String> body) {
+        return leaseAgreementRepository.findById(leaseId).map(lease -> {
+            lease.setPdf(body.get("pdfBase64"));
+            leaseAgreementRepository.save(lease);
+            return ResponseEntity.ok("PDF saved successfully");
+        }).orElse(ResponseEntity.status(404).body("LeaseAgreementModel not found"));
+    }
+
+
+    // Tenant
+    // UC-15 View Lease Agreement
+    @GetMapping("/tenant/{userId}")
+    public ResponseEntity<?> getLeases(@PathVariable String userId) {
+        return ResponseEntity.ok(leaseAgreementRepository.findByTenantIdOrderByDayDesc(userId));
+    }
+
+    // UC-16 Get PDF
+    @GetMapping("/get-pdf/{leaseId}")
+    public ResponseEntity<?> getPdf(@PathVariable String leaseId) {
+        return leaseAgreementRepository.findById(leaseId).map(lease -> {
+                    Map<String, String> response = new HashMap<>();
+                    response.put("url", "data:application/pdf;base64," + lease.getPdf());
+                    return ResponseEntity.ok(response);
+                })
+                .orElseGet(() -> {
+                    Map<String, String> error = new HashMap<>();
+                    error.put("status", "error");
+                    error.put("message", "get pdf not found");
+                    return ResponseEntity.status(404).body(error);
+                });
+    }
+
+    // UC-17 Submit Tenant LeaseAgreementModel Agreement (Finalize)
+    @PutMapping("/submit-tenant/{leaseId}")
+    public ResponseEntity<?> submitTenantLease(@PathVariable String leaseId, @RequestBody Map<String, String> body) {
+        return leaseAgreementRepository.findById(leaseId).map(lease -> {
+                    lease.setLesseeIc(body.get("lesseeIc"));
+                    lease.setLesseeDesignation(body.get("lesseeDesignation"));
+                    lease.setLesseeSignature(body.get("lesseeSignature"));
+                    lease.setLeaseStatus(LeaseAgreementStatus.EFFECTIVE);
+                    leaseAgreementRepository.save(lease);
+
+                    Map<String, String> response = new HashMap<>();
+                    response.put("status", "success");
+                    response.put("message", "LeaseAgreementModel Agreement completed");
+                    return ResponseEntity.ok(response);
+                })
+                .orElseGet(() -> {
+                    Map<String, String> error = new HashMap<>();
+                    error.put("status", "error");
+                    error.put("message", "LeaseAgreementModel not found");
+                    return ResponseEntity.status(404).body(error);
+                });
+    }
+
+    private void updateLeaseFields(LeaseAgreementModel target, LeaseAgreementModel source) {
+        target.setDay(source.getDay());
+        target.setMonth(source.getMonth());
+        target.setYear(source.getYear());
+        target.setRentRmNum(source.getRentRmNum());
+    }
+
+    // UC-18 Notify landlord after tenant signed
+    @PostMapping("/sendEmail/{recipient_email}")
+    public String notifyLandlord(@PathVariable("recipient_email") String recipientEmail){
+        String subject = "RentSpotter Notification";
+
+        String body = "Hi there,\n\n"
+                + "Lease agreement with (" + recipientEmail + ") was signed by tenant. "
+                + "Please proceed with the next step. \n\n"
+                + "Best regards,\n"
+                + "The AcadProBot Team";
+
+        emailService.sendEmail(recipientEmail, subject, body);
+        return "Reset Email Sent";
+    }
+}
