@@ -4,6 +4,7 @@ import com.rentspotter.RentSpotter.LeaseAgreementManagement.model.LeaseAgreement
 import com.rentspotter.RentSpotter.LeaseAgreementManagement.model.LeaseAgreementStatus;
 import com.rentspotter.RentSpotter.LeaseAgreementManagement.repository.LeaseAgreementRepository;
 import com.rentspotter.RentSpotter.LeaseAgreementManagement.service.EmailService;
+import com.rentspotter.RentSpotter.LeaseAgreementManagement.service.LeaseAgreementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,9 @@ public class LeaseAgreementController {
     private LeaseAgreementRepository leaseAgreementRepository;
 
     @Autowired
+    private LeaseAgreementService leaseAgreementService;
+
+    @Autowired
     private EmailService emailService;
 
 
@@ -27,25 +31,20 @@ public class LeaseAgreementController {
     // UC-12 Renew Existing Landlord LeaseAgreementModel Agreement
     @PutMapping("update-lease/{applicationId}")
     public ResponseEntity<?> updateLeaseAgreement(@PathVariable String applicationId, @RequestBody LeaseAgreementModel leaseData){
-        Optional<LeaseAgreementModel> existingLease = leaseAgreementRepository.findByApplicationId(applicationId);
-
         Map<String, Object> response = new HashMap<>();
-        if(existingLease.isEmpty()){
-            response.put("status", "error");
-            response.put("message", "lease is not exist");
-            return ResponseEntity.ok(response);
-        }
 
-        LeaseAgreementModel lease = existingLease.get();
-        updateLeaseFields(lease, leaseData);
-        lease.setLeaseStatus(LeaseAgreementStatus.UNDER_REVIEW_BY_TENANT);
-
-        LeaseAgreementModel savedLease = leaseAgreementRepository.save(lease);
-        response.put("status", "success");
-        response.put("message", "lease updated");
-        response.put("leaseId", savedLease.getId());
-
-        return ResponseEntity.ok(response);
+        return leaseAgreementService.updateLease(applicationId, leaseData)
+                .map(savedLease -> {
+                    response.put("status", "success");
+                    response.put("message", "lease updated");
+                    response.put("leaseId", savedLease.getId());
+                    return ResponseEntity.ok(response);
+                })
+                .orElseGet(() -> {
+                    response.put("status", "error");
+                    response.put("message", "lease is not exist");
+                    return ResponseEntity.ok(response);
+                });
     }
 
     // UC-13 View Lease Agreement Status
@@ -70,23 +69,19 @@ public class LeaseAgreementController {
     // UC-14 Submit Landlord LeaseAgreementModel Agreement (Create or Update)
     @PostMapping("/submit-landlord/{applicationId}")
     public ResponseEntity<?> submitLandlordLease(@PathVariable String applicationId, @RequestBody LeaseAgreementModel leaseData) {
-        Optional<LeaseAgreementModel> existingLease = leaseAgreementRepository.findByApplicationId(applicationId);
-
         Map<String, Object> response = new HashMap<>();
-        if (existingLease.isPresent()) {
-            response.put("status", "error");
-            response.put("message", "lease existed");
-            return ResponseEntity.ok(response);
-        }
 
-        LeaseAgreementModel lease = leaseData;
-        lease.setApplicationId(applicationId);
-        lease.setLeaseStatus(LeaseAgreementStatus.UNDER_REVIEW_BY_TENANT);
-
-        LeaseAgreementModel savedLease = leaseAgreementRepository.save(lease);
-        response.put("status", "success");
-        response.put("leaseAgreementId", savedLease.getId());
-        return ResponseEntity.ok(response);
+        return leaseAgreementService.submitLandlordLease(applicationId, leaseData)
+                .map(savedLease -> {
+                    response.put("status", "success");
+                    response.put("leaseAgreementId", savedLease.getId());
+                    return ResponseEntity.ok(response);
+                })
+                .orElseGet(() -> {
+                    response.put("status", "error");
+                    response.put("message", "lease existed");
+                    return ResponseEntity.ok(response);
+                });
     }
 
 
@@ -126,13 +121,13 @@ public class LeaseAgreementController {
     // UC-17 Submit Tenant LeaseAgreementModel Agreement (Finalize)
     @PutMapping("/submit-tenant/{leaseId}")
     public ResponseEntity<?> submitTenantLease(@PathVariable String leaseId, @RequestBody Map<String, String> body) {
-        return leaseAgreementRepository.findById(leaseId).map(lease -> {
-                    lease.setLesseeIc(body.get("lesseeIc"));
-                    lease.setLesseeDesignation(body.get("lesseeDesignation"));
-                    lease.setLesseeSignature(body.get("lesseeSignature"));
-                    lease.setLeaseStatus(LeaseAgreementStatus.EFFECTIVE);
-                    leaseAgreementRepository.save(lease);
-
+        return leaseAgreementService.submitTenantLease(
+                        leaseId,
+                        body.get("lesseeIc"),
+                        body.get("lesseeDesignation"),
+                        body.get("lesseeSignature")
+                )
+                .map(lease -> {
                     Map<String, String> response = new HashMap<>();
                     response.put("status", "success");
                     response.put("message", "LeaseAgreementModel Agreement completed");
@@ -144,13 +139,6 @@ public class LeaseAgreementController {
                     error.put("message", "LeaseAgreementModel not found");
                     return ResponseEntity.status(404).body(error);
                 });
-    }
-
-    private void updateLeaseFields(LeaseAgreementModel target, LeaseAgreementModel source) {
-        target.setDay(source.getDay());
-        target.setMonth(source.getMonth());
-        target.setYear(source.getYear());
-        target.setRentRmNum(source.getRentRmNum());
     }
 
     // UC-18 Notify landlord after tenant signed
