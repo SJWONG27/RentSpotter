@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface PropertyDAO extends MongoRepository<Property, String> {
-    List<Property> findByAvailableTrue();
     List<Property> findByLandlordId(String landlordId);
 }
+

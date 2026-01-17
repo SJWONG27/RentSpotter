@@ -34,8 +34,8 @@ public class TenantApplicationController {
 
             // Validate property exist and available
             Optional<Property> propertyOpt = propertyManager.getPropertyDetails(propertyId);
-            if (propertyOpt.isEmpty() || !propertyOpt.get().getAvailable()) {
-                return ResponseEntity.badRequest().body("Property not available");
+            if (propertyOpt.isEmpty()) {
+                return ResponseEntity.badRequest().body("Property not found");
             }
 
             Application app = rentalApplicationManager.submitApplication(tenantId, propertyId, monthlyIncome, occupation, message);

@@ -16,25 +16,25 @@ public class PropertyManager {
     private PropertyDAO propertyDAO;
 
     public List<Property> getAllAvailableProperties() {
-        return propertyDAO.findByAvailableTrue();
+        return propertyDAO.findAll();
     }
 
     public List<Property> filterProperties(Double maxPrice, String propertyType, String furnishedStatus) {
-        List<Property> properties = propertyDAO.findByAvailableTrue();
+        List<Property> properties = propertyDAO.findAll();
 
         if (maxPrice != null) {
             properties = properties.stream()
-                .filter(p -> p.getPrice() <= maxPrice)
+                .filter(p -> p.getPrice() != null && p.getPrice() <= maxPrice)
                 .collect(Collectors.toList());
         }
         if (propertyType != null && !propertyType.isEmpty()) {
             properties = properties.stream()
-                .filter(p -> p.getPropertyType().equalsIgnoreCase(propertyType))
+                .filter(p -> p.getType() != null && p.getType().equalsIgnoreCase(propertyType))
                 .collect(Collectors.toList());
         }
         if (furnishedStatus != null && !furnishedStatus.isEmpty()) {
             properties = properties.stream()
-                .filter(p -> p.getFurnishedStatus().equalsIgnoreCase(furnishedStatus))
+                .filter(p -> p.getFurnishing() != null && p.getFurnishing().equalsIgnoreCase(furnishedStatus))
                 .collect(Collectors.toList());
         }
         return properties;
