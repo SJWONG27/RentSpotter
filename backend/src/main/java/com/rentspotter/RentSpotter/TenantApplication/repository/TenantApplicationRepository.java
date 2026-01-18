@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ApplicationDAO extends MongoRepository<Application, String> {
+public interface TenantApplicationRepository extends MongoRepository<Application, String> {
     List<Application> findByTenantId(String tenantId);
     List<Application> findByPropertyId(String propertyId);
 }
