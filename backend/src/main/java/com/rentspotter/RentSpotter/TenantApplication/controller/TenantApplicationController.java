@@ -40,8 +40,10 @@ public class TenantApplicationController {
 
             Application app = rentalApplicationManager.submitApplication(tenantId, propertyId, monthlyIncome, occupation, message);
             return ResponseEntity.ok(app);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("Validation Error: " + e.getMessage());
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.internalServerError().body("An error occurred: " + e.getMessage());
         }
     }
 
@@ -58,8 +60,10 @@ public class TenantApplicationController {
             String tenantId = payload.get("tenantId");
             Application app = rentalApplicationManager.cancelApplication(id, tenantId);
             return ResponseEntity.ok(app);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("Validation Error: " + e.getMessage());
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.internalServerError().body("An error occurred: " + e.getMessage());
         }
     }
 
@@ -69,8 +73,10 @@ public class TenantApplicationController {
         try {
             rentalApplicationManager.deleteApplication(id, tenantId);
             return ResponseEntity.ok().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("Validation Error: " + e.getMessage());
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.internalServerError().body("An error occurred: " + e.getMessage());
         }
     }
 }
