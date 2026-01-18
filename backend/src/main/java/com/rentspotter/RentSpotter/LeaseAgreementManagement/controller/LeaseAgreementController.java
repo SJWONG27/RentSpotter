@@ -126,7 +126,7 @@ public class LeaseAgreementController {
                 });
     }
 
-    // UC-17 Submit Tenant LeaseAgreementModel Agreement (Finalize)
+    // UC-17 Submit Tenant LeaseAgreementModel Agreement
     @PutMapping("/submit-tenant/{leaseId}")
     public ResponseEntity<?> submitTenantLease(@PathVariable String leaseId, @RequestBody Map<String, String> body) {
         return leaseAgreementService.submitTenantLease(
