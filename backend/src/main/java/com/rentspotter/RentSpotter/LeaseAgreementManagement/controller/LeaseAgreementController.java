@@ -87,11 +87,19 @@ public class LeaseAgreementController {
 
     @PutMapping("/save-pdf/{leaseId}")
     public ResponseEntity<?> savePdf(@PathVariable String leaseId, @RequestBody Map<String, String> body) {
-        return leaseAgreementRepository.findById(leaseId).map(lease -> {
-            lease.setPdf(body.get("pdfBase64"));
-            leaseAgreementRepository.save(lease);
-            return ResponseEntity.ok("PDF saved successfully");
-        }).orElse(ResponseEntity.status(404).body("LeaseAgreementModel not found"));
+        Map<String, Object> response = new HashMap<>();
+        return leaseAgreementService.savePdf(
+                leaseId,
+                body.get("pdfBase64")
+        ).map(lease -> {
+            response.put("status", "success");
+            response.put("message", "pdf saved succesfully");
+            return ResponseEntity.ok(response);
+        }).orElseGet(()->{
+            response.put("status", "error");
+            response.put("message", "pdf unable to be saved");
+            return ResponseEntity.ok(response);
+        });
     }
 
 
