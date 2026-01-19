@@ -1,5 +1,7 @@
 package com.rentspotter.RentSpotter.RentalHistoryAnalytic.service.impl;
 
+import com.rentspotter.RentSpotter.LandlordPropertyManagement.model.Property;
+import com.rentspotter.RentSpotter.LandlordPropertyManagement.service.PropertyManager;
 import com.rentspotter.RentSpotter.RentalHistoryAnalytic.model.RentalRecord;
 import com.rentspotter.RentSpotter.RentalHistoryAnalytic.repository.RentalRecordRepository;
 import com.rentspotter.RentSpotter.RentalHistoryAnalytic.service.HistoryService;
@@ -13,20 +15,31 @@ public class HistoryServiceImpl implements HistoryService {
 
     @Autowired
     private RentalRecordRepository recordRepository;
+    @Autowired
+    private PropertyManager propertyManager;
+
+    @Override
+    public void saveRecord(RentalRecord record) {
+        Property property = propertyManager
+                .getPropertyDetails(record.getPropertyId())
+                .orElseThrow(() -> new RuntimeException("Invalid property ID"));
+        record.setPropertyName(property.getName());
+        recordRepository.save(record);
+    }
 
     @Override
     public List<RentalRecord> getTenantHistory(String tenantId) {
-        // In a real app, we would use a custom query
-        return recordRepository.findAll();
+        return recordRepository.findByTenantId(tenantId);
     }
 
     @Override
     public List<RentalRecord> getLandlordPortfolio(String landlordId) {
-        return recordRepository.findAll();
+        return recordRepository.findByLandlordId(landlordId);
     }
 
     @Override
     public RentalRecord getRecordById(String id) {
-        return recordRepository.findById(id).orElse(null);
+        return recordRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Record not found with ID: " + id));
     }
 }

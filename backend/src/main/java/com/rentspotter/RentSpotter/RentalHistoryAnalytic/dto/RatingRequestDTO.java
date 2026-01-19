@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RatingDTO {
+public class RatingRequestDTO {
     @NotBlank(message = "Rater ID cannot be blank")
     private String raterId;
 

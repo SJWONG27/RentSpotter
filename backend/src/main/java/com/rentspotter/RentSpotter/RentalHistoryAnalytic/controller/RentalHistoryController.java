@@ -1,6 +1,6 @@
 package com.rentspotter.RentSpotter.RentalHistoryAnalytic.controller;
 
-import com.rentspotter.RentSpotter.RentalHistoryAnalytic.dto.RatingDTO;
+import com.rentspotter.RentSpotter.RentalHistoryAnalytic.dto.RatingRequestDTO;
 import com.rentspotter.RentSpotter.RentalHistoryAnalytic.model.Rating;
 import com.rentspotter.RentSpotter.RentalHistoryAnalytic.model.RentalRecord;
 import com.rentspotter.RentSpotter.RentalHistoryAnalytic.service.DocumentService;
@@ -8,7 +8,6 @@ import com.rentspotter.RentSpotter.RentalHistoryAnalytic.service.HistoryService;
 import com.rentspotter.RentSpotter.RentalHistoryAnalytic.service.RatingService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,36 +28,40 @@ public class RentalHistoryController {
     @Autowired
     private DocumentService documentService;
 
-    // UC-19 + UC-20: View History AND Tenant Trust Score
+    // UC-19: View Rental History
     @GetMapping("/tenant/{tenantId}")
-    public Map<String, Object> getTenantDashboard(String tenantId) {
+    public ResponseEntity<List<RentalRecord>> getRentalHistory(@PathVariable String tenantId) {
         List<RentalRecord> history = historyService.getTenantHistory(tenantId);
+        return ResponseEntity.ok(history);
+    }
+
+    // UC-20: View Tenant Trust Score
+    @GetMapping("/tenant/score/{tenantId}")
+    public ResponseEntity<Double> getTenantScore(@PathVariable String tenantId) {
         double score = ratingService.getTrustScore(tenantId);
-
-        return Map.of(
-                "history", history,
-                "myTrustScore", score
-        );
+        return ResponseEntity.ok(score);
     }
 
-    // UC-21 + UC-22: View Portfolio AND Landlord Trust Score
+    // UC-21: View Portfolio Analytic
     @GetMapping("/landlord/{landlordId}")
-    public Map<String, Object> getLandlordDashboard(String landlordId) {
+    public ResponseEntity<List<RentalRecord>> getLandlordDashboard(@PathVariable String landlordId) {
         List<RentalRecord> portfolio = historyService.getLandlordPortfolio(landlordId);
-        double score = ratingService.getTrustScore(landlordId);
-
-        return Map.of(
-                "portfolio", portfolio,
-                "myReputationScore", score
-        );
-
+        return ResponseEntity.ok(portfolio);
     }
+
+    // UC-22: View Landlord Trust Score
+    @GetMapping("/landlord/score/{landlordId}")
+    public ResponseEntity<Double> getLandlordScore(@PathVariable String landlordId) {
+        double score = ratingService.getTrustScore(landlordId);
+        return ResponseEntity.ok(score);
+    }
+
 
     // UC-23 & UC-24: Rate Landlord / Rate Tenant
     @PostMapping("/rate")
-    public ResponseEntity<?> submitRating(@RequestBody @Valid RatingDTO ratingDTO) {
+    public ResponseEntity<?> submitRating(@RequestBody @Valid RatingRequestDTO ratingRequestDTO) {
         try{
-            Rating submittedRating = ratingService.submitRating(ratingDTO);
+            Rating submittedRating = ratingService.submitRating(ratingRequestDTO);
             return ResponseEntity.ok(submittedRating);
         }
         catch (Exception e){
@@ -71,7 +74,8 @@ public class RentalHistoryController {
 
     // UC-25: Generate Reference Letter
     @GetMapping("/document/{recordId}")
-    public String downloadLetter(@PathVariable String recordId) {
-        return documentService.generateReferenceLetter(recordId);
+    public ResponseEntity<String> downloadLetter(@PathVariable String recordId) {
+        String referenceLetter = documentService.generateReferenceLetter(recordId);
+        return ResponseEntity.ok(referenceLetter);
     }
 }

@@ -3,9 +3,13 @@ package com.rentspotter.RentSpotter.LeaseAgreementManagement.service;
 import com.rentspotter.RentSpotter.LeaseAgreementManagement.model.LeaseAgreementModel;
 import com.rentspotter.RentSpotter.LeaseAgreementManagement.model.LeaseAgreementStatus;
 import com.rentspotter.RentSpotter.LeaseAgreementManagement.repository.LeaseAgreementRepository;
+import com.rentspotter.RentSpotter.RentalHistoryAnalytic.model.RentalRecord;
+import com.rentspotter.RentSpotter.RentalHistoryAnalytic.service.HistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
@@ -13,6 +17,8 @@ public class LeaseAgreementService {
 
     @Autowired
     private LeaseAgreementRepository leaseAgreementRepository;
+    @Autowired
+    private HistoryService historyService;
 
     // UC-12 Update existing lease
     public Optional<LeaseAgreementModel> updateLease(String applicationId, LeaseAgreementModel leaseData) {
@@ -45,6 +51,8 @@ public class LeaseAgreementService {
     }
 
     // UC-17 Submit tenant lease (finalize)
+    // Transaction to ensure both lease update and rental record creation are atomic
+    @Transactional
     public Optional<LeaseAgreementModel> submitTenantLease(
             String leaseId,
             String lesseeIc,
@@ -56,6 +64,16 @@ public class LeaseAgreementService {
             lease.setLesseeDesignation(lesseeDesignation);
             lease.setLesseeSignature(lesseeSignature);
             lease.setLeaseStatus(LeaseAgreementStatus.EFFECTIVE);
+
+            RentalRecord record = new RentalRecord();
+            record.setTenantId(lease.getTenantId());
+            record.setLandlordId(lease.getLandlordId());
+            record.setPropertyId(lease.getPropertyId());
+            record.setStartDate(LocalDate.parse(lease.getEffectiveDate()));
+            record.setEndDate(LocalDate.parse(lease.getExpireDate()));
+            record.setRentalAmount(lease.getRentRmNum());
+            historyService.saveRecord(record);
+
             return leaseAgreementRepository.save(lease);
         });
     }
