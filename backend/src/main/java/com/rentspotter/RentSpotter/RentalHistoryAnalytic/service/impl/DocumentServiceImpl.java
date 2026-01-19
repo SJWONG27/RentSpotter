@@ -12,9 +12,8 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Autowired
     private HistoryService historyService;
-
-    @Autowired private RatingService ratingService;
-
+    @Autowired
+    private RatingService ratingService;
 
     @Override
     public String generateReferenceLetter(String recordId) {

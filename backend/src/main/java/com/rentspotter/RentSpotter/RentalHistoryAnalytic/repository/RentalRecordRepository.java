@@ -8,7 +8,6 @@ import java.util.List;
 
 @Repository
 public interface RentalRecordRepository extends MongoRepository<RentalRecord, String> {
-    // Spring Data Mongo automatically generates queries from method names
     List<RentalRecord> findByTenantId(String tenantId);
     List<RentalRecord> findByLandlordId(String landlordId);
 }

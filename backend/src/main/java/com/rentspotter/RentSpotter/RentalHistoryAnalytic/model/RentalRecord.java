@@ -1,21 +1,25 @@
 package com.rentspotter.RentSpotter.RentalHistoryAnalytic.model;
 
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import lombok.Data;
 import java.time.LocalDate;
 
-@Data
-@Document(collection = "rental_records") // Replaces @Entity
+@Getter
+@Setter
+@Document(collection = "rental_records")
 public class RentalRecord {
 
-    @Id // No @GeneratedValue needed; Mongo generates a unique String ID
-    private String id; // Change Long to String (standard for Mongo ObjectIds)
+    @Id
+    private String id;
 
     private String tenantId;
     private String landlordId;
+    private String propertyId;
     private String propertyName;
     private LocalDate startDate;
     private LocalDate endDate;
+    private Double rentalAmount;
 }
