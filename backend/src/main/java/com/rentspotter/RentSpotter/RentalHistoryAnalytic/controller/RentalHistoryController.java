@@ -28,30 +28,34 @@ public class RentalHistoryController {
     @Autowired
     private DocumentService documentService;
 
-    // UC-19 + UC-20: View History AND Tenant Trust Score
+    // UC-19: View Rental History
     @GetMapping("/tenant/{tenantId}")
-    public ResponseEntity<Map<String, Object>> getTenantDashboard(@PathVariable String tenantId) {
+    public ResponseEntity<List<RentalRecord>> getRentalHistory(@PathVariable String tenantId) {
         List<RentalRecord> history = historyService.getTenantHistory(tenantId);
+        return ResponseEntity.ok(history);
+    }
+
+    // UC-20: View Tenant Trust Score
+    @GetMapping("/tenant/score/{tenantId}")
+    public ResponseEntity<Double> getTenantScore(@PathVariable String tenantId) {
         double score = ratingService.getTrustScore(tenantId);
-
-        return  ResponseEntity.ok(Map.of(
-                "history", history,
-                "myTrustScore", score
-        ));
+        return ResponseEntity.ok(score);
     }
 
-    // UC-21 + UC-22: View Portfolio AND Landlord Trust Score
+    // UC-21: View Portfolio Analytic
     @GetMapping("/landlord/{landlordId}")
-    public Map<String, Object> getLandlordDashboard(@PathVariable String landlordId) {
+    public ResponseEntity<List<RentalRecord>> getLandlordDashboard(@PathVariable String landlordId) {
         List<RentalRecord> portfolio = historyService.getLandlordPortfolio(landlordId);
-        double score = ratingService.getTrustScore(landlordId);
-
-        return Map.of(
-                "portfolio", portfolio,
-                "myReputationScore", score
-        );
-
+        return ResponseEntity.ok(portfolio);
     }
+
+    // UC-22: View Landlord Trust Score
+    @GetMapping("/landlord/score/{landlordId}")
+    public ResponseEntity<Double> getLandlordScore(@PathVariable String landlordId) {
+        double score = ratingService.getTrustScore(landlordId);
+        return ResponseEntity.ok(score);
+    }
+
 
     // UC-23 & UC-24: Rate Landlord / Rate Tenant
     @PostMapping("/rate")
