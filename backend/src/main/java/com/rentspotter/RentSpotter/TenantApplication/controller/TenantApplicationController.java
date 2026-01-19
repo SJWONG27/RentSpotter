@@ -1,7 +1,7 @@
 package com.rentspotter.RentSpotter.TenantApplication.controller;
 
 import com.rentspotter.RentSpotter.TenantApplication.model.Application;
-import com.rentspotter.RentSpotter.TenantApplication.service.RentalApplicationManager;
+import com.rentspotter.RentSpotter.TenantApplication.service.TenantApplicationService;
 import com.rentspotter.RentSpotter.LandlordPropertyManagement.service.PropertyManager;
 import com.rentspotter.RentSpotter.LandlordPropertyManagement.model.Property;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import java.util.Optional;
 public class TenantApplicationController {
 
     @Autowired
-    private RentalApplicationManager rentalApplicationManager;
+    private TenantApplicationService tenantApplicationService;
     
     @Autowired
     private PropertyManager propertyManager; // To validate property availability before applying
@@ -38,17 +38,19 @@ public class TenantApplicationController {
                 return ResponseEntity.badRequest().body("Property not found");
             }
 
-            Application app = rentalApplicationManager.submitApplication(tenantId, propertyId, monthlyIncome, occupation, message);
+            Application app = tenantApplicationService.submitApplication(tenantId, propertyId, monthlyIncome, occupation, message);
             return ResponseEntity.ok(app);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("Validation Error: " + e.getMessage());
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.internalServerError().body("An error occurred: " + e.getMessage());
         }
     }
 
     // UC-4 & UC-5: Track status / View history
     @GetMapping
     public ResponseEntity<List<Application>> getMyApplications(@RequestParam String tenantId) {
-        return ResponseEntity.ok(rentalApplicationManager.getTenantApplications(tenantId));
+        return ResponseEntity.ok(tenantApplicationService.getTenantApplications(tenantId));
     }
 
     // UC-5: Cancel pending application
@@ -56,10 +58,12 @@ public class TenantApplicationController {
     public ResponseEntity<?> cancelApplication(@PathVariable String id, @RequestBody Map<String, String> payload) {
         try {
             String tenantId = payload.get("tenantId");
-            Application app = rentalApplicationManager.cancelApplication(id, tenantId);
+            Application app = tenantApplicationService.cancelApplication(id, tenantId);
             return ResponseEntity.ok(app);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("Validation Error: " + e.getMessage());
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.internalServerError().body("An error occurred: " + e.getMessage());
         }
     }
 
@@ -67,10 +71,12 @@ public class TenantApplicationController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteApplication(@PathVariable String id, @RequestParam String tenantId) {
         try {
-            rentalApplicationManager.deleteApplication(id, tenantId);
+            tenantApplicationService.deleteApplication(id, tenantId);
             return ResponseEntity.ok().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("Validation Error: " + e.getMessage());
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.internalServerError().body("An error occurred: " + e.getMessage());
         }
     }
 }
