@@ -19,7 +19,7 @@ public class RentalRecord {
     private String landlordId;
     private String propertyId;
     private String propertyName;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private String startDate;
+    private String endDate;
     private Double rentalAmount;
 }
