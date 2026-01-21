@@ -70,7 +70,8 @@ public class RatingServiceImpl implements RatingService {
     }
 
     private void sendRatingNotification(Rating rating) {
-        String msg = "You received a new " + rating.getScore() + "-star rating!";
+        String msg = "You received a new " + rating.getScore() + "-star rating!" +
+                "\nComment: " + rating.getComment();
         Optional<User> ratedUser = Optional.ofNullable(userService.getUserById(rating.getRatedUserId()));
         if (ratedUser.isPresent()){
             emailService.sendEmail(ratedUser.get().getEmail(), "New Rating Received", msg);}
