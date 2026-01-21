@@ -69,8 +69,8 @@ public class LeaseAgreementService {
             record.setTenantId(lease.getTenantId());
             record.setLandlordId(lease.getLandlordId());
             record.setPropertyId(lease.getPropertyId());
-            record.setStartDate(LocalDate.parse(lease.getEffectiveDate()));
-            record.setEndDate(LocalDate.parse(lease.getExpireDate()));
+            record.setStartDate(lease.getEffectiveDate());
+            record.setEndDate(lease.getExpireDate());
             record.setRentalAmount(lease.getRentRmNum());
             historyService.saveRecord(record);
 
