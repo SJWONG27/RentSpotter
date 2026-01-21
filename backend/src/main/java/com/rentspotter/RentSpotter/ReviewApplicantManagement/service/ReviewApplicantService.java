@@ -6,12 +6,17 @@ import com.rentspotter.RentSpotter.ReviewApplicantManagement.model.ApplicantRevi
 import com.rentspotter.RentSpotter.ReviewApplicantManagement.repository.ApplicantReviewRepository;
 import com.rentspotter.RentSpotter.TenantApplication.model.Application;
 import com.rentspotter.RentSpotter.TenantApplication.repository.TenantApplicationRepository;
+import com.rentspotter.RentSpotter.RentalHistoryAnalytic.model.Rating;
+import com.rentspotter.RentSpotter.RentalHistoryAnalytic.repository.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Comparator;
 
 @Service
 public class ReviewApplicantService {
@@ -24,6 +29,9 @@ public class ReviewApplicantService {
 
     @Autowired
     private PropertyManager propertyManager;
+
+    @Autowired
+    private RatingRepository ratingRepository;
 
     public List<Application> getApplicationsForLandlord(String landlordId) {
         // Get all properties for this landlord
@@ -43,6 +51,40 @@ public class ReviewApplicantService {
 
         return tenantApplicationRepository.findAll().stream()
                 .filter(a -> landlordPropertyIds.contains(a.getPropertyId()))
+                .collect(Collectors.toList());
+    }
+
+    public List<Application> getApplicationsForLandlordSorted(String landlordId, String sortOrder) {
+        List<Application> applications = getApplicationsForLandlord(landlordId);
+        
+        // Calculate average rating for each tenant from the ratings collection
+        Map<String, Double> tenantRatings = new HashMap<>();
+        for (Application app : applications) {
+            String tenantId = app.getTenantId();
+            if (!tenantRatings.containsKey(tenantId)) {
+                // Get all ratings for this tenant from the ratings collection
+                List<Rating> ratings = ratingRepository.findByRatedUserId(tenantId);
+                
+                double avgRating = ratings.stream()
+                        .mapToInt(Rating::getScore)
+                        .average()
+                        .orElse(0.0);
+                tenantRatings.put(tenantId, avgRating);
+            }
+        }
+        
+        // Sort applications by tenant rating
+        Comparator<Application> comparator = Comparator.comparingDouble(
+                app -> tenantRatings.getOrDefault(app.getTenantId(), 0.0)
+        );
+        
+        if ("desc".equalsIgnoreCase(sortOrder)) {
+            comparator = comparator.reversed(); // Highest to Lowest
+        }
+        // else "asc" = Lowest to Highest (default)
+        
+        return applications.stream()
+                .sorted(comparator)
                 .collect(Collectors.toList());
     }
 

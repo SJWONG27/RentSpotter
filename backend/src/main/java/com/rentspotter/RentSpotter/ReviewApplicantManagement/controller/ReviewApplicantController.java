@@ -18,9 +18,17 @@ public class ReviewApplicantController {
     private ReviewApplicantService reviewApplicantService;
 
     @GetMapping("/")
-    public ResponseEntity<?> getApplications(@RequestParam String landlordId) {
+    public ResponseEntity<?> getApplications(
+            @RequestParam String landlordId,
+            @RequestParam(required = false) String sortBy,
+            @RequestParam(required = false, defaultValue = "desc") String order) {
         try {
-            List<Application> applications = reviewApplicantService.getApplicationsForLandlord(landlordId);
+            List<Application> applications;
+            if ("rating".equalsIgnoreCase(sortBy)) {
+                applications = reviewApplicantService.getApplicationsForLandlordSorted(landlordId, order);
+            } else {
+                applications = reviewApplicantService.getApplicationsForLandlord(landlordId);
+            }
             return ResponseEntity.ok(applications);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body("Error fetching applications: " + e.getMessage());
