@@ -3,12 +3,14 @@ package com.rentspotter.RentSpotter.RentalHistoryAnalytic.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDate;
 
 @Getter
 @Setter
+@ToString
 @Document(collection = "rental_records")
 public class RentalRecord {
 
