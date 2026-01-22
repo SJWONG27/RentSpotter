@@ -1,6 +1,5 @@
 package com.rentspotter.RentSpotter.ReviewApplicantManagement.controller;
 
-import com.rentspotter.RentSpotter.ReviewApplicantManagement.model.ApplicantReview;
 import com.rentspotter.RentSpotter.ReviewApplicantManagement.service.ReviewApplicantService;
 import com.rentspotter.RentSpotter.TenantApplication.model.Application;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +16,9 @@ public class ReviewApplicantController {
     @Autowired
     private ReviewApplicantService reviewApplicantService;
 
-    @GetMapping("/")
+    @GetMapping("/{landlordId}")
     public ResponseEntity<?> getApplications(
-            @RequestParam String landlordId,
+            @PathVariable String landlordId,
             @RequestParam(required = false) String sortBy,
             @RequestParam(required = false, defaultValue = "desc") String order) {
         try {
@@ -35,38 +34,60 @@ public class ReviewApplicantController {
         }
     }
 
-    @PostMapping("/review")
-    public ResponseEntity<?> reviewApplication(@RequestBody Map<String, Object> payload) {
+    @GetMapping("/applicant-info/{tenantId}")
+    public ResponseEntity<?> getApplicantInfo(@PathVariable String tenantId) {
         try {
-            String applicationId = (String) payload.get("applicationId");
-            String landlordId = (String) payload.get("landlordId");
-            String decisionStr = (String) payload.get("decision");
-            String feedback = (String) payload.get("feedback");
-
-            ApplicantReview.ReviewDecision decision = ApplicantReview.ReviewDecision.valueOf(decisionStr);
-
-            ApplicantReview review = reviewApplicantService.reviewApplication(applicationId, landlordId, decision,
-                    feedback);
-            return ResponseEntity.ok(review);
+            return ResponseEntity.ok(reviewApplicantService.getApplicantDetails(tenantId));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error reviewing application: " + e.getMessage());
+            return ResponseEntity.internalServerError().body("Error fetching applicant info: " + e.getMessage());
         }
     }
 
-    @GetMapping("/history")
-    public ResponseEntity<?> getReviewHistory(@RequestParam String landlordId) {
+    @GetMapping("/feedback/{landlordId}")
+    public ResponseEntity<?> getLandlordFeedback(@PathVariable String landlordId) {
         try {
-            List<ApplicantReview> history = reviewApplicantService.getReviewHistory(landlordId);
-            return ResponseEntity.ok(history);
+            return ResponseEntity.ok(reviewApplicantService.getLandlordFeedbackHistory(landlordId));
         } catch (Exception e) {
-            return ResponseEntity.internalServerError().body("Error fetching review history: " + e.getMessage());
+            return ResponseEntity.internalServerError().body("Error fetching landlord feedback: " + e.getMessage());
         }
     }
 
-    @PostMapping("/contact")
-    public ResponseEntity<?> contactApplicant(@RequestBody Map<String, String> payload) {
+    @PutMapping("/accept/{applicationId}")
+    public ResponseEntity<?> acceptApplicant(@PathVariable String applicationId,
+            @RequestBody Map<String, String> payload) {
         try {
-            String applicationId = payload.get("applicationId");
+            String landlordId = payload.get("landlordId");
+            if (landlordId == null || landlordId.isEmpty()) {
+                return ResponseEntity.badRequest().body("landlordId is required");
+            }
+            String feedback = payload.get("feedback"); // Optional
+            reviewApplicantService.acceptApplication(applicationId, landlordId, feedback);
+            return ResponseEntity.ok("Application Accepted");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error accepting application: " + e.getMessage());
+        }
+    }
+
+    @PutMapping("/reject/{applicationId}")
+    public ResponseEntity<?> rejectApplicant(@PathVariable String applicationId,
+            @RequestBody Map<String, String> payload) {
+        try {
+            String landlordId = payload.get("landlordId");
+            if (landlordId == null || landlordId.isEmpty()) {
+                return ResponseEntity.badRequest().body("landlordId is required");
+            }
+            String feedback = payload.get("feedback"); // Optional
+            reviewApplicantService.rejectApplication(applicationId, landlordId, feedback);
+            return ResponseEntity.ok("Application Rejected");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error rejecting application: " + e.getMessage());
+        }
+    }
+
+    @PostMapping("/contact/{applicationId}")
+    public ResponseEntity<?> contactApplicant(@PathVariable String applicationId,
+            @RequestBody Map<String, String> payload) {
+        try {
             String message = payload.get("message");
             reviewApplicantService.contactApplicant(applicationId, message);
             return ResponseEntity.ok("Email sent successfully");

@@ -2,17 +2,17 @@ package com.rentspotter.RentSpotter.ReviewApplicantManagement.service;
 
 import com.rentspotter.RentSpotter.LandlordPropertyManagement.model.Property;
 import com.rentspotter.RentSpotter.LandlordPropertyManagement.service.PropertyManager;
-import com.rentspotter.RentSpotter.ReviewApplicantManagement.model.ApplicantReview;
-import com.rentspotter.RentSpotter.ReviewApplicantManagement.repository.ApplicantReviewRepository;
 import com.rentspotter.RentSpotter.TenantApplication.model.Application;
 import com.rentspotter.RentSpotter.TenantApplication.repository.TenantApplicationRepository;
 import com.rentspotter.RentSpotter.RentalHistoryAnalytic.model.Rating;
 import com.rentspotter.RentSpotter.RentalHistoryAnalytic.repository.RatingRepository;
+import com.rentspotter.RentSpotter.ReviewApplicantManagement.model.ApplicantReview;
+import com.rentspotter.RentSpotter.ReviewApplicantManagement.repository.ApplicantReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 import java.util.stream.Collectors;
 import java.util.Map;
 import java.util.HashMap;
@@ -20,7 +20,6 @@ import java.util.Comparator;
 
 @Service
 public class ReviewApplicantService {
-
     @Autowired
     private ApplicantReviewRepository applicantReviewRepository;
 
@@ -92,7 +91,32 @@ public class ReviewApplicantService {
                 .collect(Collectors.toList());
     }
 
-    public ApplicantReview reviewApplication(String applicationId, String landlordId,
+    public Map<String, Object> getApplicantDetails(String tenantId) {
+        com.rentspotter.RentSpotter.Authentication.model.User tenant = userRepository.findById(tenantId)
+                .orElseThrow(() -> new RuntimeException("Tenant not found"));
+
+        List<Rating> ratings = ratingRepository.findByRatedUserId(tenantId);
+
+        Map<String, Object> details = new HashMap<>();
+        details.put("tenant", tenant);
+        details.put("ratings", ratings);
+
+        return details;
+    }
+
+    public List<ApplicantReview> getLandlordFeedbackHistory(String landlordId) {
+        return applicantReviewRepository.findByLandlordId(landlordId);
+    }
+
+    public void acceptApplication(String applicationId, String landlordId, String feedback) {
+        processApplicationDecision(applicationId, landlordId, ApplicantReview.ReviewDecision.APPROVED, feedback);
+    }
+
+    public void rejectApplication(String applicationId, String landlordId, String feedback) {
+        processApplicationDecision(applicationId, landlordId, ApplicantReview.ReviewDecision.REJECTED, feedback);
+    }
+
+    private void processApplicationDecision(String applicationId, String landlordId,
             ApplicantReview.ReviewDecision decision, String feedback) {
         Application application = tenantApplicationRepository.findById(applicationId)
                 .orElseThrow(() -> new RuntimeException("Application not found"));
@@ -100,11 +124,12 @@ public class ReviewApplicantService {
         Property property = propertyManager.getPropertyDetails(application.getPropertyId())
                 .orElseThrow(() -> new RuntimeException("Property not found"));
 
+        // Optional: Verify landlord owns the property
         if (!landlordId.equals(property.getLandlordId())) {
             throw new RuntimeException("Unauthorized: Landlord does not own this property");
         }
 
-        // Update application status
+        // Update Status
         if (decision == ApplicantReview.ReviewDecision.APPROVED) {
             application.setStatus(Application.ApplicationStatus.APPROVED);
         } else {
@@ -112,7 +137,7 @@ public class ReviewApplicantService {
         }
         tenantApplicationRepository.save(application);
 
-        // Create and save review
+        // Save Review
         ApplicantReview review = new ApplicantReview(
                 applicationId,
                 landlordId,
@@ -120,8 +145,7 @@ public class ReviewApplicantService {
                 application.getPropertyId(),
                 decision,
                 feedback);
-
-        return applicantReviewRepository.save(review);
+        applicantReviewRepository.save(review);
     }
 
     @Autowired
@@ -129,10 +153,6 @@ public class ReviewApplicantService {
 
     @Autowired
     private com.rentspotter.RentSpotter.Authentication.repository.UserRepository userRepository;
-
-    public List<ApplicantReview> getReviewHistory(String landlordId) {
-        return applicantReviewRepository.findByLandlordId(landlordId);
-    }
 
     public void contactApplicant(String applicationId, String message) {
         Application application = tenantApplicationRepository.findById(applicationId)
