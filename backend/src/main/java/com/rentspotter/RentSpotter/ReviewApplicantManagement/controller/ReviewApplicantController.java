@@ -45,7 +45,8 @@ public class ReviewApplicantController {
 
             ApplicantReview.ReviewDecision decision = ApplicantReview.ReviewDecision.valueOf(decisionStr);
 
-            ApplicantReview review = reviewApplicantService.reviewApplication(applicationId, landlordId, decision, feedback);
+            ApplicantReview review = reviewApplicantService.reviewApplication(applicationId, landlordId, decision,
+                    feedback);
             return ResponseEntity.ok(review);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error reviewing application: " + e.getMessage());
@@ -59,6 +60,18 @@ public class ReviewApplicantController {
             return ResponseEntity.ok(history);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().body("Error fetching review history: " + e.getMessage());
+        }
+    }
+
+    @PostMapping("/contact")
+    public ResponseEntity<?> contactApplicant(@RequestBody Map<String, String> payload) {
+        try {
+            String applicationId = payload.get("applicationId");
+            String message = payload.get("message");
+            reviewApplicantService.contactApplicant(applicationId, message);
+            return ResponseEntity.ok("Email sent successfully");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error sending email: " + e.getMessage());
         }
     }
 }
