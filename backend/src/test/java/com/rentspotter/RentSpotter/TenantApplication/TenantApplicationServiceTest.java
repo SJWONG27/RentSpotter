@@ -3,6 +3,8 @@ package com.rentspotter.RentSpotter.TenantApplication;
 import com.rentspotter.RentSpotter.TenantApplication.model.Application;
 import com.rentspotter.RentSpotter.TenantApplication.repository.TenantApplicationRepository;
 import com.rentspotter.RentSpotter.TenantApplication.service.TenantApplicationService;
+import com.rentspotter.RentSpotter.LandlordPropertyManagement.service.PropertyManager;
+import com.rentspotter.RentSpotter.LandlordPropertyManagement.model.Property;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -23,6 +25,9 @@ class TenantApplicationServiceTest {
     @Mock
     private TenantApplicationRepository tenantApplicationRepository;
 
+    @Mock
+    private PropertyManager propertyManager;
+
     @InjectMocks
     private TenantApplicationService tenantApplicationService;
 
@@ -35,6 +40,7 @@ class TenantApplicationServiceTest {
         Application savedApp = new Application(tenantId, propertyId, 5000.0, "Eng", "Hi");
         savedApp.setId("APP1");
 
+        when(propertyManager.getPropertyDetails(propertyId)).thenReturn(Optional.of(new Property()));
         when(tenantApplicationRepository.findByTenantId(tenantId)).thenReturn(Collections.emptyList());
         when(tenantApplicationRepository.save(any(Application.class))).thenReturn(savedApp);
 
@@ -52,6 +58,7 @@ class TenantApplicationServiceTest {
         Application existingApp = new Application(tenantId, propertyId, 5000.0, "Eng", "Hi");
         existingApp.setStatus(Application.ApplicationStatus.PENDING);
 
+        when(propertyManager.getPropertyDetails(propertyId)).thenReturn(Optional.of(new Property()));
         when(tenantApplicationRepository.findByTenantId(tenantId)).thenReturn(List.of(existingApp));
 
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
@@ -64,9 +71,51 @@ class TenantApplicationServiceTest {
 
     @Test
     void submitApplication_InvalidIncome_ThrowsError() {
+        when(propertyManager.getPropertyDetails("P1")).thenReturn(Optional.of(new Property()));
         assertThrows(IllegalArgumentException.class, () ->
             tenantApplicationService.submitApplication("T1", "P1", -100.0, "Eng", "Hi")
         );
+    }
+
+    @Test
+    void submitApplication_InvalidTenantId_ThrowsError() {
+        assertThrows(IllegalArgumentException.class, () ->
+            tenantApplicationService.submitApplication("", "P1", 5000.0, "Eng", "Hi")
+        );
+    }
+
+    @Test
+    void submitApplication_InvalidPropertyId_ThrowsError() {
+        assertThrows(IllegalArgumentException.class, () ->
+            tenantApplicationService.submitApplication("T1", "", 5000.0, "Eng", "Hi")
+        );
+    }
+
+    @Test
+    void submitApplication_InvalidOccupation_ThrowsError() {
+        when(propertyManager.getPropertyDetails("P1")).thenReturn(Optional.of(new Property()));
+        assertThrows(IllegalArgumentException.class, () ->
+            tenantApplicationService.submitApplication("T1", "P1", 5000.0, "", "Hi")
+        );
+    }
+
+    @Test
+    void submitApplication_InvalidMessage_ThrowsError() {
+        when(propertyManager.getPropertyDetails("P1")).thenReturn(Optional.of(new Property()));
+        assertThrows(IllegalArgumentException.class, () ->
+            tenantApplicationService.submitApplication("T1", "P1", 5000.0, "Eng", "")
+        );
+    }
+
+    @Test
+    void submitApplication_PropertyNotFound_ThrowsError() {
+        when(propertyManager.getPropertyDetails("P_INVALID")).thenReturn(Optional.empty());
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () ->
+            tenantApplicationService.submitApplication("T1", "P_INVALID", 5000.0, "Eng", "Hi")
+        );
+
+        assertEquals("Property not found", exception.getMessage());
     }
 
     // --- UC-4: View History ---
