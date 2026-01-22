@@ -2,6 +2,7 @@ package com.rentspotter.RentSpotter.TenantApplication.service;
 
 import com.rentspotter.RentSpotter.TenantApplication.model.Application;
 import com.rentspotter.RentSpotter.TenantApplication.repository.TenantApplicationRepository;
+import com.rentspotter.RentSpotter.LandlordPropertyManagement.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,9 @@ public class TenantApplicationService {
     @Autowired
     private TenantApplicationRepository tenantApplicationRepository;
 
+    @Autowired
+    private PropertyService propertyService;
+
     public Application submitApplication(String tenantId, String propertyId, Double monthlyIncome, String occupation, String message) {
         if (tenantId == null || tenantId.trim().isEmpty()) {
             throw new IllegalArgumentException("Tenant ID cannot be empty");
@@ -21,6 +25,12 @@ public class TenantApplicationService {
         if (propertyId == null || propertyId.trim().isEmpty()) {
             throw new IllegalArgumentException("Property ID cannot be empty");
         }
+        
+        // Property Existence Check
+        if (propertyService.getPropertyDetails(propertyId).isEmpty()) {
+             throw new IllegalArgumentException("Property not found");
+        }
+
         if (monthlyIncome == null || monthlyIncome <= 0) {
             throw new IllegalArgumentException("Monthly income must be greater than 0");
         }

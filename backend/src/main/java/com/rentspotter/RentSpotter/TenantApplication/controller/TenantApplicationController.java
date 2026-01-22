@@ -2,7 +2,7 @@ package com.rentspotter.RentSpotter.TenantApplication.controller;
 
 import com.rentspotter.RentSpotter.TenantApplication.model.Application;
 import com.rentspotter.RentSpotter.TenantApplication.service.TenantApplicationService;
-import com.rentspotter.RentSpotter.LandlordPropertyManagement.service.PropertyManager;
+import com.rentspotter.RentSpotter.LandlordPropertyManagement.service.PropertyService;
 import com.rentspotter.RentSpotter.LandlordPropertyManagement.model.Property;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class TenantApplicationController {
     private TenantApplicationService tenantApplicationService;
     
     @Autowired
-    private PropertyManager propertyManager; // To validate property availability before applying
+    private PropertyService propertyService; // To validate property availability before applying
 
     // UC-3: Submit rental application
     @PostMapping
@@ -33,7 +33,7 @@ public class TenantApplicationController {
             String message = (String) payload.get("message");
 
             // Validate property exist and available
-            Optional<Property> propertyOpt = propertyManager.getPropertyDetails(propertyId);
+            Optional<Property> propertyOpt = propertyService.getPropertyDetails(propertyId);
             if (propertyOpt.isEmpty()) {
                 return ResponseEntity.badRequest().body("Property not found");
             }

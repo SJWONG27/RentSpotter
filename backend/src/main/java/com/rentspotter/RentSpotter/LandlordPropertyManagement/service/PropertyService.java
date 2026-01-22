@@ -8,6 +8,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.Optional;
 
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -221,5 +223,23 @@ public class PropertyService {
         }
 
         return mongoTemplate.find(query, Property.class);
+    }
+
+    public List<Property> getAllAvailableProperties() {
+        return propertyRepository.findAll();
+    }
+
+    public Optional<Property> getPropertyDetails(String propertyId) {
+        return propertyRepository.findById(propertyId);
+    }
+
+    public List<Property> filterPublicProperties(Double maxPrice, String propertyType, String furnishedStatus) {
+        return propertyRepository.findAll().stream()
+                .filter(p -> maxPrice == null || (p.getPrice() != null && p.getPrice() <= maxPrice))
+                .filter(p -> propertyType == null || propertyType.isEmpty()
+                        || propertyType.equalsIgnoreCase(p.getType()))
+                .filter(p -> furnishedStatus == null || furnishedStatus.isEmpty()
+                        || furnishedStatus.equalsIgnoreCase(p.getFurnishing()))
+                .collect(Collectors.toList());
     }
 }
