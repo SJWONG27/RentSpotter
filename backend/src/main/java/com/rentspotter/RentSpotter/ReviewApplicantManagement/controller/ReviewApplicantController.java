@@ -1,13 +1,12 @@
 package com.rentspotter.RentSpotter.ReviewApplicantManagement.controller;
 
 import com.rentspotter.RentSpotter.ReviewApplicantManagement.service.ReviewApplicantService;
-import com.rentspotter.RentSpotter.TenantApplication.model.Application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/landlord/applicants")
@@ -16,13 +15,14 @@ public class ReviewApplicantController {
     @Autowired
     private ReviewApplicantService reviewApplicantService;
 
+    // UC-26 view applicant list //UC-27 Sort Applicant by Rating
     @GetMapping("/{landlordId}")
     public ResponseEntity<?> getApplications(
             @PathVariable String landlordId,
             @RequestParam(required = false) String sortBy,
             @RequestParam(required = false, defaultValue = "desc") String order) {
         try {
-            List<Application> applications;
+            List<Map<String, Object>> applications;
             if ("rating".equalsIgnoreCase(sortBy)) {
                 applications = reviewApplicantService.getApplicationsForLandlordSorted(landlordId, order);
             } else {
@@ -43,6 +43,7 @@ public class ReviewApplicantController {
         }
     }
 
+    // UC-28 View Applicant Feedback
     @GetMapping("/feedback/{landlordId}")
     public ResponseEntity<?> getLandlordFeedback(@PathVariable String landlordId) {
         try {
@@ -52,6 +53,7 @@ public class ReviewApplicantController {
         }
     }
 
+    // UC-30 Accept Applicant
     @PutMapping("/accept/{applicationId}")
     public ResponseEntity<?> acceptApplicant(@PathVariable String applicationId,
             @RequestBody Map<String, String> payload) {
@@ -68,6 +70,7 @@ public class ReviewApplicantController {
         }
     }
 
+    // UC-31 Reject Applicant
     @PutMapping("/reject/{applicationId}")
     public ResponseEntity<?> rejectApplicant(@PathVariable String applicationId,
             @RequestBody Map<String, String> payload) {
@@ -84,6 +87,7 @@ public class ReviewApplicantController {
         }
     }
 
+    // UC-29 Contact Applicant
     @PostMapping("/contact/{applicationId}")
     public ResponseEntity<?> contactApplicant(@PathVariable String applicationId,
             @RequestBody Map<String, String> payload) {

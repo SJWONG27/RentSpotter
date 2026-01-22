@@ -32,63 +32,71 @@ public class ReviewApplicantService {
     @Autowired
     private RatingRepository ratingRepository;
 
-    public List<Application> getApplicationsForLandlord(String landlordId) {
-        // Get all properties for this landlord
-        // Note: PropertyRepository has findByLandlordId, but the requirement said
-        // inject PropertyManager
-        // Since PropertyManager doesn't have findByLandlordId, I'll have to get all and
-        // filter or use repository if available.
-        // Actually, PropertyRepository is available in the project.
-        // But the requirement specifically asked to inject PropertyManager.
-        // Let's see if I can use PropertyRepository too or if I should stick strictly
-        // to requested injections.
-        // I will use PropertyManager to get all and filter if necessary, or just use
-        // what's available.
-        // Re-reading: "Inject: ApplicantReviewRepository, TenantApplicationRepository,
-        // PropertyManager"
-
+    public List<Map<String, Object>> getApplicationsForLandlord(String landlordId) {
         List<Property> allProperties = propertyManager.getAllAvailableProperties();
         List<String> landlordPropertyIds = allProperties.stream()
                 .filter(p -> landlordId.equals(p.getLandlordId()))
                 .map(Property::getId)
                 .collect(Collectors.toList());
 
-        return tenantApplicationRepository.findAll().stream()
+        List<Application> applications = tenantApplicationRepository.findAll().stream()
                 .filter(a -> landlordPropertyIds.contains(a.getPropertyId()))
+                .collect(Collectors.toList());
+
+        return enrichApplications(applications);
+    }
+
+    public List<Map<String, Object>> getApplicationsForLandlordSorted(String landlordId, String sortOrder) {
+        List<Map<String, Object>> enrichedList = getApplicationsForLandlord(landlordId);
+
+        Comparator<Map<String, Object>> comparator = Comparator.comparingDouble(
+                app -> (Double) app.getOrDefault("tenantRating", 0.0));
+
+        if ("desc".equalsIgnoreCase(sortOrder)) {
+            comparator = comparator.reversed();
+        }
+
+        return enrichedList.stream()
+                .sorted(comparator)
                 .collect(Collectors.toList());
     }
 
-    public List<Application> getApplicationsForLandlordSorted(String landlordId, String sortOrder) {
-        List<Application> applications = getApplicationsForLandlord(landlordId);
+    private List<Map<String, Object>> enrichApplications(List<Application> applications) {
+        return applications.stream().map(app -> {
+            Map<String, Object> map = new HashMap<>();
+            map.put("id", app.getId());
+            map.put("tenantId", app.getTenantId());
+            map.put("propertyId", app.getPropertyId());
+            map.put("status", app.getStatus());
+            map.put("applicationDate", app.getApplicationDate());
+            map.put("monthlyIncome", app.getMonthlyIncome());
+            map.put("occupation", app.getOccupation());
+            map.put("message", app.getMessage());
 
-        // Calculate average rating for each tenant from the ratings collection
-        Map<String, Double> tenantRatings = new HashMap<>();
-        for (Application app : applications) {
-            String tenantId = app.getTenantId();
-            if (!tenantRatings.containsKey(tenantId)) {
-                // Get all ratings for this tenant from the ratings collection
-                List<Rating> ratings = ratingRepository.findByRatedUserId(tenantId);
-
-                double avgRating = ratings.stream()
-                        .mapToInt(Rating::getScore)
-                        .average()
-                        .orElse(0.0);
-                tenantRatings.put(tenantId, avgRating);
+            // Enrich with User info
+            try {
+                com.rentspotter.RentSpotter.Authentication.model.User tenant = userRepository
+                        .findById(app.getTenantId())
+                        .orElse(null);
+                if (tenant != null) {
+                    map.put("applicantName", tenant.getUsername()); // Or tenant.getFullname() if preferred
+                } else {
+                    map.put("applicantName", "Unknown");
+                }
+            } catch (Exception e) {
+                map.put("applicantName", "Error");
             }
-        }
 
-        // Sort applications by tenant rating
-        Comparator<Application> comparator = Comparator.comparingDouble(
-                app -> tenantRatings.getOrDefault(app.getTenantId(), 0.0));
+            // Enrich with Rating info
+            List<Rating> ratings = ratingRepository.findByRatedUserId(app.getTenantId());
+            double avgRating = ratings.stream()
+                    .mapToInt(Rating::getScore)
+                    .average()
+                    .orElse(0.0);
+            map.put("tenantRating", avgRating);
 
-        if ("desc".equalsIgnoreCase(sortOrder)) {
-            comparator = comparator.reversed(); // Highest to Lowest
-        }
-        // else "asc" = Lowest to Highest (default)
-
-        return applications.stream()
-                .sorted(comparator)
-                .collect(Collectors.toList());
+            return map;
+        }).collect(Collectors.toList());
     }
 
     public Map<String, Object> getApplicantDetails(String tenantId) {
