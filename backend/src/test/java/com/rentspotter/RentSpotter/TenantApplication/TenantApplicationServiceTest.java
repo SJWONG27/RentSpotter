@@ -3,7 +3,7 @@ package com.rentspotter.RentSpotter.TenantApplication;
 import com.rentspotter.RentSpotter.TenantApplication.model.Application;
 import com.rentspotter.RentSpotter.TenantApplication.repository.TenantApplicationRepository;
 import com.rentspotter.RentSpotter.TenantApplication.service.TenantApplicationService;
-import com.rentspotter.RentSpotter.LandlordPropertyManagement.service.PropertyManager;
+import com.rentspotter.RentSpotter.LandlordPropertyManagement.service.PropertyService;
 import com.rentspotter.RentSpotter.LandlordPropertyManagement.model.Property;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,7 +26,7 @@ class TenantApplicationServiceTest {
     private TenantApplicationRepository tenantApplicationRepository;
 
     @Mock
-    private PropertyManager propertyManager;
+    private PropertyService propertyService;
 
     @InjectMocks
     private TenantApplicationService tenantApplicationService;
@@ -40,7 +40,7 @@ class TenantApplicationServiceTest {
         Application savedApp = new Application(tenantId, propertyId, 5000.0, "Eng", "Hi");
         savedApp.setId("APP1");
 
-        when(propertyManager.getPropertyDetails(propertyId)).thenReturn(Optional.of(new Property()));
+        when(propertyService.getPropertyDetails(propertyId)).thenReturn(Optional.of(new Property()));
         when(tenantApplicationRepository.findByTenantId(tenantId)).thenReturn(Collections.emptyList());
         when(tenantApplicationRepository.save(any(Application.class))).thenReturn(savedApp);
 
@@ -58,7 +58,7 @@ class TenantApplicationServiceTest {
         Application existingApp = new Application(tenantId, propertyId, 5000.0, "Eng", "Hi");
         existingApp.setStatus(Application.ApplicationStatus.PENDING);
 
-        when(propertyManager.getPropertyDetails(propertyId)).thenReturn(Optional.of(new Property()));
+        when(propertyService.getPropertyDetails(propertyId)).thenReturn(Optional.of(new Property()));
         when(tenantApplicationRepository.findByTenantId(tenantId)).thenReturn(List.of(existingApp));
 
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
@@ -71,7 +71,7 @@ class TenantApplicationServiceTest {
 
     @Test
     void submitApplication_InvalidIncome_ThrowsError() {
-        when(propertyManager.getPropertyDetails("P1")).thenReturn(Optional.of(new Property()));
+        when(propertyService.getPropertyDetails("P1")).thenReturn(Optional.of(new Property()));
         assertThrows(IllegalArgumentException.class, () ->
             tenantApplicationService.submitApplication("T1", "P1", -100.0, "Eng", "Hi")
         );
@@ -93,7 +93,7 @@ class TenantApplicationServiceTest {
 
     @Test
     void submitApplication_InvalidOccupation_ThrowsError() {
-        when(propertyManager.getPropertyDetails("P1")).thenReturn(Optional.of(new Property()));
+        when(propertyService.getPropertyDetails("P1")).thenReturn(Optional.of(new Property()));
         assertThrows(IllegalArgumentException.class, () ->
             tenantApplicationService.submitApplication("T1", "P1", 5000.0, "", "Hi")
         );
@@ -101,7 +101,7 @@ class TenantApplicationServiceTest {
 
     @Test
     void submitApplication_InvalidMessage_ThrowsError() {
-        when(propertyManager.getPropertyDetails("P1")).thenReturn(Optional.of(new Property()));
+        when(propertyService.getPropertyDetails("P1")).thenReturn(Optional.of(new Property()));
         assertThrows(IllegalArgumentException.class, () ->
             tenantApplicationService.submitApplication("T1", "P1", 5000.0, "Eng", "")
         );
@@ -109,7 +109,7 @@ class TenantApplicationServiceTest {
 
     @Test
     void submitApplication_PropertyNotFound_ThrowsError() {
-        when(propertyManager.getPropertyDetails("P_INVALID")).thenReturn(Optional.empty());
+        when(propertyService.getPropertyDetails("P_INVALID")).thenReturn(Optional.empty());
 
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
             tenantApplicationService.submitApplication("T1", "P_INVALID", 5000.0, "Eng", "Hi")

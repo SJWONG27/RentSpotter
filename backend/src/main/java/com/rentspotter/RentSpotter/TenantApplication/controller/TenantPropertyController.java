@@ -1,7 +1,7 @@
 package com.rentspotter.RentSpotter.TenantApplication.controller;
 
 import com.rentspotter.RentSpotter.LandlordPropertyManagement.model.Property;
-import com.rentspotter.RentSpotter.LandlordPropertyManagement.service.PropertyManager;
+import com.rentspotter.RentSpotter.LandlordPropertyManagement.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import java.util.Optional;
 public class TenantPropertyController {
 
     @Autowired
-    private PropertyManager propertyManager;
+    private PropertyService propertyService;
 
     // UC-1: View property listings with filters
     @GetMapping
@@ -22,14 +22,14 @@ public class TenantPropertyController {
             @RequestParam(required = false) Double maxPrice,
             @RequestParam(required = false) String propertyType,
             @RequestParam(required = false) String furnishedStatus) {
-        List<Property> properties = propertyManager.filterProperties(maxPrice, propertyType, furnishedStatus);
+        List<Property> properties = propertyService.filterPublicProperties(maxPrice, propertyType, furnishedStatus);
         return ResponseEntity.ok(properties);
     }
 
     // UC-2: View property details
     @GetMapping("/{id}")
     public ResponseEntity<Property> getPropertyDetails(@PathVariable String id) {
-        Optional<Property> property = propertyManager.getPropertyDetails(id);
+        Optional<Property> property = propertyService.getPropertyDetails(id);
         return property.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }

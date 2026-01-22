@@ -1,7 +1,7 @@
 package com.rentspotter.RentSpotter.LandlordPropertyManagement.service;
 
 import com.rentspotter.RentSpotter.LandlordPropertyManagement.model.Property;
-import com.rentspotter.RentSpotter.LandlordPropertyManagement.repository.PropertyDAO;
+import com.rentspotter.RentSpotter.LandlordPropertyManagement.repository.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,14 +13,14 @@ import java.util.stream.Collectors;
 public class PropertyManager {
 
     @Autowired
-    private PropertyDAO propertyDAO;
+    private PropertyRepository propertyRepository;
 
     public List<Property> getAllAvailableProperties() {
-        return propertyDAO.findAll();
+        return propertyRepository.findAll();
     }
 
     public List<Property> filterProperties(Double maxPrice, String propertyType, String furnishedStatus) {
-        List<Property> properties = propertyDAO.findAll();
+        List<Property> properties = propertyRepository.findAll();
 
         if (maxPrice != null) {
             properties = properties.stream()
@@ -41,6 +41,6 @@ public class PropertyManager {
     }
 
     public Optional<Property> getPropertyDetails(String propertyId) {
-        return propertyDAO.findById(propertyId);
+        return propertyRepository.findById(propertyId);
     }
 }

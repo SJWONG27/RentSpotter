@@ -2,7 +2,7 @@ package com.rentspotter.RentSpotter.TenantApplication.service;
 
 import com.rentspotter.RentSpotter.TenantApplication.model.Application;
 import com.rentspotter.RentSpotter.TenantApplication.repository.TenantApplicationRepository;
-import com.rentspotter.RentSpotter.LandlordPropertyManagement.service.PropertyManager;
+import com.rentspotter.RentSpotter.LandlordPropertyManagement.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ public class TenantApplicationService {
     private TenantApplicationRepository tenantApplicationRepository;
 
     @Autowired
-    private PropertyManager propertyManager;
+    private PropertyService propertyService;
 
     public Application submitApplication(String tenantId, String propertyId, Double monthlyIncome, String occupation, String message) {
         if (tenantId == null || tenantId.trim().isEmpty()) {
@@ -27,7 +27,7 @@ public class TenantApplicationService {
         }
         
         // Property Existence Check
-        if (propertyManager.getPropertyDetails(propertyId).isEmpty()) {
+        if (propertyService.getPropertyDetails(propertyId).isEmpty()) {
              throw new IllegalArgumentException("Property not found");
         }
 

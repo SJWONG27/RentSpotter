@@ -222,4 +222,22 @@ public class PropertyService {
 
         return mongoTemplate.find(query, Property.class);
     }
+
+    public List<Property> getAllAvailableProperties() {
+        return propertyRepository.findAll();
+    }
+
+    public Optional<Property> getPropertyDetails(String propertyId) {
+        return propertyRepository.findById(propertyId);
+    }
+
+    public List<Property> filterPublicProperties(Double maxPrice, String propertyType, String furnishedStatus) {
+        return propertyRepository.findAll().stream()
+                .filter(p -> maxPrice == null || (p.getPrice() != null && p.getPrice() <= maxPrice))
+                .filter(p -> propertyType == null || propertyType.isEmpty()
+                        || propertyType.equalsIgnoreCase(p.getType()))
+                .filter(p -> furnishedStatus == null || furnishedStatus.isEmpty()
+                        || furnishedStatus.equalsIgnoreCase(p.getFurnishing()))
+                .collect(Collectors.toList());
+    }
 }
